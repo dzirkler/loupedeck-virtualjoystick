@@ -20,6 +20,12 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin
         public override void Load()
         {
             this.Info.DisplayName = "Virtual Joystick";
+
+            this.Info.Icon16x16 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin.Icons.GenericJoystickPlugin-16.png");
+            this.Info.Icon32x32= EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin.Icons.GenericJoystickPlugin-32.png");
+            this.Info.Icon48x48 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin.Icons.GenericJoystickPlugin-48.png");
+            this.Info.Icon256x256 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin.Icons.GenericJoystickPlugin-256.png");
+
         }
 
         public override void Unload()

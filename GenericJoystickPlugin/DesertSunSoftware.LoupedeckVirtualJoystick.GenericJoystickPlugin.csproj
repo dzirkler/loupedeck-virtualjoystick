@@ -62,5 +62,11 @@
       <Name>DesertSunSoftware.LoupedeckVirtualJoystick.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\GenericJoystickPlugin-16.png" />
+    <EmbeddedResource Include="Icons\GenericJoystickPlugin-32.png" />
+    <EmbeddedResource Include="Icons\GenericJoystickPlugin-48.png" />
+    <EmbeddedResource Include="Icons\GenericJoystickPlugin-256.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
