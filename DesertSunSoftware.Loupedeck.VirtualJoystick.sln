@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced DLLs", "Referenc
 		Referenced DLLs\vJoyInterfaceWrap.dll = Referenced DLLs\vJoyInterfaceWrap.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin", "GenericJoystickPlugin\DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin.csproj", "{F0385BBF-F1E3-452C-8A41-3C5D5C423B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericJoystickPlugin", "GenericJoystickPlugin\GenericJoystickPlugin.csproj", "{F0385BBF-F1E3-452C-8A41-3C5D5C423B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesertSunSoftware.LoupedeckVirtualJoystick.Common", "Common\DesertSunSoftware.LoupedeckVirtualJoystick.Common.csproj", "{65494ADC-BD08-4F91-A3D3-7BB514DAD7C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{65494ADC-BD08-4F91-A3D3-7BB514DAD7C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

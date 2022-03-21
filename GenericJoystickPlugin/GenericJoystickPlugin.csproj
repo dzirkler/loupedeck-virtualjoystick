@@ -57,9 +57,9 @@
     <EmbeddedResource Include="PluginConfiguration.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\DesertSunSoftware.LoupedeckVirtualJoystick.Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{65494adc-bd08-4f91-a3d3-7bb514dad7c1}</Project>
-      <Name>DesertSunSoftware.LoupedeckVirtualJoystick.Common</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
