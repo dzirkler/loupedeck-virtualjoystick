@@ -68,5 +68,8 @@
     <EmbeddedResource Include="Icons\GenericJoystickPlugin-48.png" />
     <EmbeddedResource Include="Icons\GenericJoystickPlugin-256.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LoupedeckPackage.yaml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
