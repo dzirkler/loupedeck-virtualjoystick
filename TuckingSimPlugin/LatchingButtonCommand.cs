@@ -59,13 +59,11 @@
         {
             if (actionParameter == null) return null;
 
-
             var button = TruckingSimPlugin.Configuration.Buttons.Find(mb => mb.SafeName == actionParameter);
             Boolean state = false;
 
             if (ButtonStates.ContainsKey(actionParameter))
             {
-                // Not sure why this is flipped, but its very consistent
                 state = ButtonStates[actionParameter];
             }
             else
