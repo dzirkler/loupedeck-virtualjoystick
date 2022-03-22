@@ -9,7 +9,6 @@
         public FullRangeAdjustmentConfiguration() { }
 
         public JoystickAxis Axis { get; set; }
-        [YamlIgnore] public Int32 CurrentValue { get; set; }
         public Int32 DefaultValue { get; set; }
 
         public enum JoystickAxis
