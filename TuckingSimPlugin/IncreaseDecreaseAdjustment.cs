@@ -13,13 +13,13 @@
         public IncreaseDecreaseAdjustment() : base(true)
         {
 
-            foreach (var mpSwitch in TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments)
+            foreach (var incDecAdjuster in TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments)
             {
                 // Add a Dial
                 this.AddParameter(
-                    mpSwitch.SafeName,
-                    mpSwitch.FullName,
-                    mpSwitch.GroupName,
+                    incDecAdjuster.SafeName,
+                    incDecAdjuster.FullName,
+                    incDecAdjuster.GroupName,
                     "Multi-Position Switch",
                     LoupedeckOperatingSystem.Win);
             }
@@ -55,7 +55,7 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
-            var button = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Find(mb => mb.SafeName == actionParameter);
+            var button = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Find(a => a.SafeName == actionParameter);
             return button == null ? "actionParameter" : button.DisplayText;
         }
 

@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MultiPositionSwitch.cs" />
     <Compile Include="IncreaseDecreaseAdjustment.cs" />
     <Compile Include="TruckingSimPlugin.cs" />
     <Compile Include="LatchingButtonCommand.cs" />

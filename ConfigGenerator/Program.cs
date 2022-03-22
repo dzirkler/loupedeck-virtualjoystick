@@ -133,7 +133,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 GroupName = "Transmission",
                 FullName = "Drive Mode",
                 DisplayText = "Auto\n{0}",
-                CurrentValue = 2,
                 DefaultValue = 2,
                 Positions = 3,
                 PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
@@ -165,7 +164,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 GroupName = "Wipers",
                 FullName = "Wiper Speed Adjust",
                 DisplayText = "Wipers\n{0}",
-                CurrentValue = 1,
                 DefaultValue = 1,
                 Positions = 4,
                 PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()

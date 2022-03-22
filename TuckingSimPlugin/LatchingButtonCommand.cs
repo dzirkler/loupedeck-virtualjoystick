@@ -10,7 +10,7 @@
 
     public class LatchingButtonCommand : LatchingButtonCommandBase
     {
-        private Dictionary<string, Boolean> ButtonStates = new Dictionary<string, Boolean>();
+        private Dictionary<String, Boolean> ButtonStates = new Dictionary<String, Boolean>();
 
         public LatchingButtonCommand() : base()
         {

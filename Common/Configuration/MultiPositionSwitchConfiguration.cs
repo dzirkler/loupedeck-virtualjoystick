@@ -9,7 +9,6 @@
     {
         public MultiPositionSwitchConfiguration() { }
 
-        [YamlIgnore] public Int32 CurrentValue { get; set; }
         public Int32 DefaultValue { get; set; }
         public Int32 Positions { get; set; }
         public List<MultiPositionValue> PositionValues { get; set; }
