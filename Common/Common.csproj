@@ -60,6 +60,7 @@
     <Compile Include="Configuration\LatchingButtonConfiguration.cs" />
     <Compile Include="Configuration\MomentaryButtonConfiguration.cs" />
     <Compile Include="Configuration\MultiPositionSwitchConfiguration.cs" />
+    <Compile Include="IncreaseDecreaseAdjustmentBase.cs" />
     <Compile Include="LatchingButtonCommandBase.cs" />
     <Compile Include="MomentaryButtonCommandBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

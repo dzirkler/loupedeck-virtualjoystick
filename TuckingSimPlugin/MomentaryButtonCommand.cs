@@ -31,7 +31,7 @@
             var buttons = TruckingSimPlugin.Configuration.Buttons;
             var button = buttons.Where(b => b.SafeName == actionParameter).First();
 
-            await SendButtonPress(joyId, button.ButtonId, 100);
+            await SendButtonPress(joyId, button.ButtonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
         }
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)

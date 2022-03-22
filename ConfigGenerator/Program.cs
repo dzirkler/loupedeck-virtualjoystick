@@ -204,7 +204,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 SafeName = CreateSafeName("Cruise Control", "Cruise Control Adjust"),
                 GroupName = "Cruise Control",
                 FullName = "Cruise Control Adjust",
-                DisplayText = "",
+                DisplayText = "Cruise Control",
                 IconFileName = "Icons.car-cruise-control.png",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,

@@ -232,7 +232,7 @@ increaseDecreaseAdjustments:
   safeName: CruiseControl-CruiseControlAdjust
   groupName: Cruise Control
   fullName: Cruise Control Adjust
-  displayText: ''
+  displayText: Cruise Control
   iconFileName: Icons.car-cruise-control.png
 fullRangeAdjustments:
 - axis: X
