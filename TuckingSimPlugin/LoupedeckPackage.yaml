@@ -1,0 +1,14 @@
+﻿type: plugin4
+name: 'TruckingSimPlugin'
+displayName: 'Trucking Simulators Plugin'
+version: 1.0.0
+author: Desert Sun Software
+copyright: Copyright (c) 2022 Desert Sun Software & Damon Zirkler
+
+supportedDevices:
+  - LoupedeckCt
+  - LoupedeckLive
+
+pluginFileName: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.dll
+pluginFolderWin: ./bin/win/
+#pluginFolderMac: ./bin/mac/

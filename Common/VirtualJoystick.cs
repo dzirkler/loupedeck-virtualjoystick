@@ -8,25 +8,37 @@
     using System.Threading.Tasks;
 
     using vJoyInterfaceWrap;
-    
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
+
     public static class VirtualJoystick
     {
-        static public vJoy joystick;
-        static public vJoy.JoystickState iReport;
-        static public UInt32 id = 1;
+        private static Dictionary<UInt32, vJoy> _joysticks = new Dictionary<UInt32, vJoy>();
 
-        public static Boolean Init()
+        private static vJoy GetJoystick(UInt32 joystickId)
+        {
+            if (!_joysticks.ContainsKey(joystickId))
+            {
+                if (!Init(joystickId))
+                {
+                    throw new InvalidOperationException("Cannot connect to vJoy. Please confirm it is running and restart Loupedeck software.");
+                }
+            }
+
+            return _joysticks[joystickId];
+        }
+
+
+        private static Boolean Init(UInt32 joystickId)
         {
             // Create one joystick object and a position structure.
-            joystick = new vJoy();
-            iReport = new vJoy.JoystickState();
+            var joystick = new vJoy();
 
             // Device ID can only be in the range 1-16
- //           if (args.Length > 0 && !String.IsNullOrEmpty(args[0]))
-//                id = Convert.ToUInt32(args[0]);
-            if (id <= 0 || id > 16)
+            //           if (args.Length > 0 && !String.IsNullOrEmpty(args[0]))
+            //                id = Convert.ToUInt32(args[0]);
+            if (joystickId <= 0 || joystickId > 16)
             {
-                Debug.WriteLine("Illegal device ID {0}\nExit!", id);
+                Debug.WriteLine("Illegal device ID {0}\nExit!", joystickId);
                 return false;
             }
 
@@ -42,42 +54,42 @@
             }
 
             // Get the state of the requested device
-            VjdStat status = joystick.GetVJDStatus(id);
+            VjdStat status = joystick.GetVJDStatus(joystickId);
             switch (status)
             {
                 case VjdStat.VJD_STAT_OWN:
-                    Debug.WriteLine("vJoy Device {0} is already owned by this feeder\n", id);
+                    Debug.WriteLine("vJoy Device {0} is already owned by this feeder\n", joystickId);
                     break;
                 case VjdStat.VJD_STAT_FREE:
-                    Debug.WriteLine("vJoy Device {0} is free\n", id);
+                    Debug.WriteLine("vJoy Device {0} is free\n", joystickId);
                     break;
                 case VjdStat.VJD_STAT_BUSY:
-                    Debug.WriteLine("vJoy Device {0} is already owned by another feeder\nCannot continue\n", id);
+                    Debug.WriteLine("vJoy Device {0} is already owned by another feeder\nCannot continue\n", joystickId);
                     return false;
                 case VjdStat.VJD_STAT_MISS:
-                    Debug.WriteLine("vJoy Device {0} is not installed or disabled\nCannot continue\n", id);
+                    Debug.WriteLine("vJoy Device {0} is not installed or disabled\nCannot continue\n", joystickId);
                     return false;
                 default:
-                    Debug.WriteLine("vJoy Device {0} general error\nCannot continue\n", id);
+                    Debug.WriteLine("vJoy Device {0} general error\nCannot continue\n", joystickId);
                     return false;
             };
 
             // Check which axes are supported
-            var AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
-            var AxisY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Y);
-            var AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
-            var AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
-            var AxisRY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RY);
-            var AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
-            var AxisSL0 = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_SL0);
-            var AxisSL1 = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_SL1);
+            var AxisX = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_X);
+            var AxisY = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_Y);
+            var AxisZ = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_Z);
+            var AxisRX = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_RX);
+            var AxisRY = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_RY);
+            var AxisRZ = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_RZ);
+            var AxisSL0 = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_SL0);
+            var AxisSL1 = joystick.GetVJDAxisExist(joystickId, HID_USAGES.HID_USAGE_SL1);
             // Get the number of buttons and POV Hat switchessupported by this vJoy device
-            var nButtons = joystick.GetVJDButtonNumber(id);
-            var ContPovNumber = joystick.GetVJDContPovNumber(id);
-            var DiscPovNumber = joystick.GetVJDDiscPovNumber(id);
+            var nButtons = joystick.GetVJDButtonNumber(joystickId);
+            var ContPovNumber = joystick.GetVJDContPovNumber(joystickId);
+            var DiscPovNumber = joystick.GetVJDDiscPovNumber(joystickId);
 
             // Print results
-            Debug.WriteLine("\nvJoy Device {0} capabilities:\n", id);
+            Debug.WriteLine("\nvJoy Device {0} capabilities:\n", joystickId);
             Debug.WriteLine("Numner of buttons\t\t{0}\n", nButtons);
             Debug.WriteLine("Numner of Continuous POVs\t{0}\n", ContPovNumber);
             Debug.WriteLine("Numner of Descrete POVs\t\t{0}\n", DiscPovNumber);
@@ -103,37 +115,32 @@
             }
 
             // Acquire the target
-            if ((status == VjdStat.VJD_STAT_OWN) || ((status == VjdStat.VJD_STAT_FREE) && (!joystick.AcquireVJD(id))))
+            if ((status == VjdStat.VJD_STAT_OWN) || ((status == VjdStat.VJD_STAT_FREE) && (!joystick.AcquireVJD(joystickId))))
             {
-                Debug.WriteLine("Failed to acquire vJoy device number {0}.\n", id);
+                Debug.WriteLine("Failed to acquire vJoy device number {0}.\n", joystickId);
                 return false;
             }
             else
             {
                 // Reset to initial values
-                joystick.ResetVJD(id);
+                joystick.ResetVJD(joystickId);
 
-                Debug.WriteLine("Acquired: vJoy device number {0}.\n", id);
+                Debug.WriteLine("Acquired: vJoy device number {0}.\n", joystickId);
+                _joysticks.Add(joystickId, joystick);
                 return true;
             }
 
         }
 
-        //public static Boolean SendButtonPress(UInt32 buttonId, Boolean state)
-        //{
-        //    return SendButtonPress(id, buttonId, state);
-        //}
-
         public static Boolean SendButtonPress(UInt32 joyId, UInt32 buttonId, Boolean state)
         {
-            return joystick.SetBtn(state, id, buttonId);
+            return GetJoystick(joyId).SetBtn(state, joyId, buttonId);
         }
 
-        //public static Boolean SetAxis(FullRangeAdjustmentConfiguration.JoystickAxis joystickAxis, Int32 currentValue)
-        //{
-        //    return joystick.SetAxis(currentValue, id, (HID_USAGES)joystickAxis);
-        //    //return joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
-        //}
+        public static Boolean SetAxis(UInt32 joyId, FullRangeAdjustmentConfiguration.JoystickAxis joystickAxis, Int32 currentValue)
+        {
+            return GetJoystick(joyId).SetAxis(currentValue, joyId, (HID_USAGES)joystickAxis);
+        }
 
     }
 }

@@ -1,4 +1,4 @@
-namespace DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin
+namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 {
     using System;
     using System.Collections.Generic;
@@ -8,9 +8,9 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.GenericJoystickPlugin
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
     using Loupedeck;
 
-    public class GenericJoystickApplication : ClientApplication
+    public class TruckingSimApplication : ClientApplication
     {
-        public GenericJoystickApplication()
+        public TruckingSimApplication()
         {
         }
 
