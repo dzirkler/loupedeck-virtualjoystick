@@ -11,6 +11,7 @@ buttons:
   groupName: Game Info
   fullName: Game Active
   displayText: 'Game Active: {0}'
+  telemetryItem: SdkActive
 - buttonId: 0
   style: DisplayButton
   defaultValue: false
@@ -18,6 +19,7 @@ buttons:
   groupName: Game Info
   fullName: Game Paused
   displayText: 'Game Paused: {0}'
+  telemetryItem: Paused
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false
@@ -25,6 +27,7 @@ buttons:
   groupName: Brakes
   fullName: Parking Brake
   displayText: Parking Brake
+  telemetryItem: 
 - buttonId: 2
   style: MomentaryButton
   defaultValue: false
@@ -32,6 +35,7 @@ buttons:
   groupName: Camera
   fullName: Camera 1
   displayText: Camera 1
+  telemetryItem: 
 - buttonId: 3
   style: MomentaryButton
   defaultValue: false
@@ -39,6 +43,7 @@ buttons:
   groupName: Camera
   fullName: Camera 2
   displayText: Camera 2
+  telemetryItem: 
 - buttonId: 4
   style: MomentaryButton
   defaultValue: false
@@ -46,6 +51,7 @@ buttons:
   groupName: Camera
   fullName: Camera 3
   displayText: Camera 3
+  telemetryItem: 
 - buttonId: 5
   style: MomentaryButton
   defaultValue: false
@@ -53,6 +59,7 @@ buttons:
   groupName: Camera
   fullName: Camera 4
   displayText: Camera 4
+  telemetryItem: 
 - buttonId: 6
   style: MomentaryButton
   defaultValue: false
@@ -60,6 +67,7 @@ buttons:
   groupName: Camera
   fullName: Camera 5
   displayText: Camera 5
+  telemetryItem: 
 - buttonId: 7
   style: MomentaryButton
   defaultValue: false
@@ -67,6 +75,7 @@ buttons:
   groupName: Camera
   fullName: Camera 6
   displayText: Camera 6
+  telemetryItem: 
 - buttonId: 8
   style: MomentaryButton
   defaultValue: false
@@ -74,6 +83,7 @@ buttons:
   groupName: Camera
   fullName: Camera 7
   displayText: Camera 7
+  telemetryItem: 
 - buttonId: 9
   style: MomentaryButton
   defaultValue: false
@@ -81,6 +91,7 @@ buttons:
   groupName: Camera
   fullName: Camera 8
   displayText: Camera 8
+  telemetryItem: 
 - buttonId: 10
   style: MomentaryButton
   defaultValue: false
@@ -88,6 +99,7 @@ buttons:
   groupName: Camera
   fullName: Next Camera
   displayText: Next Camera
+  telemetryItem: 
 - buttonId: 11
   style: MomentaryButton
   defaultValue: false
@@ -95,6 +107,7 @@ buttons:
   groupName: Cruise Control
   fullName: Cruise Control Resume
   displayText: Cruise Control Resume
+  telemetryItem: 
 - buttonId: 12
   style: MomentaryButton
   defaultValue: false
@@ -102,6 +115,7 @@ buttons:
   groupName: Cruise Control
   fullName: Cruise Control On/Off
   displayText: Cruise Control On/Off
+  telemetryItem: 
 - buttonId: 13
   style: MomentaryButton
   defaultValue: false
@@ -114,6 +128,7 @@ buttons:
     Lift/
 
     Lower
+  telemetryItem: 
 - buttonId: 14
   style: MomentaryButton
   defaultValue: false
@@ -121,6 +136,7 @@ buttons:
   groupName: Drivetrain
   fullName: Diff Lock
   displayText: Diff Lock
+  telemetryItem: 
 - buttonId: 15
   style: MomentaryButton
   defaultValue: false
@@ -128,6 +144,7 @@ buttons:
   groupName: Engine
   fullName: Engine Start/Stop
   displayText: Start/Stop
+  telemetryItem: 
 - buttonId: 16
   style: MomentaryButton
   defaultValue: false
@@ -135,6 +152,7 @@ buttons:
   groupName: Horns
   fullName: Air Horn
   displayText: Air Horn
+  telemetryItem: 
 - buttonId: 17
   style: MomentaryButton
   defaultValue: false
@@ -142,6 +160,7 @@ buttons:
   groupName: Horns
   fullName: Horn
   displayText: Horn
+  telemetryItem: 
 - buttonId: 18
   style: MomentaryButton
   defaultValue: false
@@ -149,6 +168,7 @@ buttons:
   groupName: Lights
   fullName: Beacon
   displayText: Beacon
+  telemetryItem: 
 - buttonId: 19
   style: MomentaryButton
   defaultValue: false
@@ -156,6 +176,7 @@ buttons:
   groupName: Lights
   fullName: Fog Lights
   displayText: Fog Lights
+  telemetryItem: 
 - buttonId: 20
   style: MomentaryButton
   defaultValue: false
@@ -163,6 +184,7 @@ buttons:
   groupName: Lights
   fullName: Hazard Lights
   displayText: Hazard Lights
+  telemetryItem: 
 - buttonId: 21
   style: MomentaryButton
   defaultValue: false
@@ -170,6 +192,7 @@ buttons:
   groupName: Lights
   fullName: High Beams
   displayText: High Beams
+  telemetryItem: 
 - buttonId: 22
   style: MomentaryButton
   defaultValue: false
@@ -177,6 +200,7 @@ buttons:
   groupName: Lights
   fullName: Next Light Mode
   displayText: Next Light Mode
+  telemetryItem: 
 - buttonId: 23
   style: MomentaryButton
   defaultValue: false
@@ -184,6 +208,7 @@ buttons:
   groupName: Misc
   fullName: Activate (Enter)
   displayText: Activate
+  telemetryItem: 
 - buttonId: 24
   style: MomentaryButton
   defaultValue: false
@@ -191,6 +216,7 @@ buttons:
   groupName: Trailer
   fullName: Trailer Attach/Detatch
   displayText: Trailer Attach/Detatch
+  telemetryItem: 
 multiPositionSwitches: []
 increaseDecreaseAdjustments:
 - increaseButtonId: 25
@@ -200,6 +226,7 @@ increaseDecreaseAdjustments:
   groupName: Cruise Control
   fullName: Cruise Control Adjust
   displayText: Cruise Control
+  telemetryItem: 
 - increaseButtonId: 28
   decreaseButtonId: 29
   resetButtonId: 30
@@ -207,6 +234,7 @@ increaseDecreaseAdjustments:
   groupName: Transmission
   fullName: Drive Mode Adjust
   displayText: Drive Mode
+  telemetryItem: 
 - increaseButtonId: 31
   decreaseButtonId: 32
   resetButtonId: 33
@@ -214,6 +242,7 @@ increaseDecreaseAdjustments:
   groupName: Route Advisor
   fullName: Route Advisor Pages
   displayText: Route Advisor
+  telemetryItem: 
 - increaseButtonId: 34
   decreaseButtonId: 35
   resetButtonId: 36
@@ -221,6 +250,7 @@ increaseDecreaseAdjustments:
   groupName: Camera
   fullName: Camera Change
   displayText: Camera Change
+  telemetryItem: 
 - increaseButtonId: 37
   decreaseButtonId: 38
   resetButtonId: 39
@@ -228,6 +258,7 @@ increaseDecreaseAdjustments:
   groupName: Wipers
   fullName: Wiper Speed Adjust
   displayText: Wipers
+  telemetryItem: 
 fullRangeAdjustments:
 - axis: X
   defaultValue: 16383
@@ -235,3 +266,4 @@ fullRangeAdjustments:
   groupName: View
   fullName: Left/Right
   displayText: L/R
+  telemetryItem: 

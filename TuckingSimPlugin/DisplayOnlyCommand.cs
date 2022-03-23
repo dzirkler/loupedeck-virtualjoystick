@@ -9,42 +9,42 @@
     using System.Threading.Tasks;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
     using Loupedeck;
+    using Microsoft.CodeAnalysis.CSharp.Scripting;
     using SCSSdkClient.Object;
 
     public class DisplayOnlyCommand : DisplayOnlyCommandBase
     {
-        private bool SDKRunning = true;
-        private bool GamePaused = true;
+        private Dictionary<String, Object> ButtonStates = new Dictionary<String, Object>();
+
+        //private bool SDKRunning = true;
+        //private bool GamePaused = true;
 
         public DisplayOnlyCommand() : base()
         {
-            foreach (var momentButton in TruckingSimPlugin.Configuration.Buttons
+            foreach (var button in TruckingSimPlugin.Configuration.Buttons
                 .Where(b => b.Style == Common.Configuration.ButtonConfiguration.ButtonStyle.DisplayButton))
             {
                 // Add a Display Button
                 this.AddParameter(
-                    momentButton.SafeName,
-                    momentButton.FullName,
-                    momentButton.GroupName,
+                    button.SafeName,
+                    button.FullName,
+                    button.GroupName,
                     "Display",
                     LoupedeckOperatingSystem.Win);
-            }
 
-            TruckingSimPlugin.Telemetry
-                .Select(data => data.Paused)
-                .DistinctUntilChanged()
-                .Subscribe(paused => {
-                    GamePaused = paused;
-                    this.ActionImageChanged("GameInfo-GamePaused");
+                // Seed Storage
+                ButtonStates.Add(button.SafeName, false);
+
+                TruckingSimPlugin.Telemetry
+                    .Select(data => {
+                        return data.GetType().GetProperty(button.TelemetryItem).GetValue(data);
+                    })
+                    .DistinctUntilChanged()
+                    .Subscribe(itemValue => {
+                    this.ButtonStates[button.SafeName] = itemValue;
+                        this.ActionImageChanged(button.SafeName);
                     });
-
-            TruckingSimPlugin.Telemetry
-                .Select(data => data.SdkActive)
-                .DistinctUntilChanged()
-                .Subscribe(running => {
-                    SDKRunning = running;
-                    this.ActionImageChanged("GameInfo-GameActive");
-                });
+            }
         }
 
         protected override async void RunCommand(String actionParameter)
@@ -54,22 +54,10 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
-            string yesNo = "No";
-            switch (actionParameter)
-            {
-                case "GameInfo-GameActive":
-                    yesNo = SDKRunning ? "Yes" : "No";
-                    break;
-                case "GameInfo-GamePaused":
-                    yesNo = GamePaused ? "Yes" : "No";
-                    break;
-                default:
-                    break;
-            }
+            if (actionParameter == null || actionParameter == "") return null;
 
-            
             var button = TruckingSimPlugin.Configuration.Buttons.Find(b => b.SafeName == actionParameter);
-            return button == null ? "actionParameter" : String.Format(button.DisplayText, yesNo);
+            return button == null ? "actionParameter" : String.Format(button.DisplayText, ButtonStates[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)

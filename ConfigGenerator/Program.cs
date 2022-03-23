@@ -67,10 +67,10 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             UInt32 buttonId = 1;
 
             // Display Buttons
-            var displayButtons = new List<Tuple<String, String, String>>
+            var displayButtons = new List<Tuple<String, String, String, String>>
                     {
-                        new Tuple<String, String, String>("Game Info", "Game Active", "Game Active: {0}"),
-                        new Tuple<String, String, String>("Game Info", "Game Paused", "Game Paused: {0}")
+                        new Tuple<String, String, String, String>("Game Info", "Game Active", "Game Active: {0}", "SdkActive"),
+                        new Tuple<String, String, String, String>("Game Info", "Game Paused", "Game Paused: {0}", "Paused")
                     };
             foreach (var button in displayButtons)
             {
@@ -81,7 +81,8 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     FullName = button.Item2,
                     DisplayText = button.Item3,
                     ButtonId = 0,
-                    Style = ButtonConfiguration.ButtonStyle.DisplayButton
+                    Style = ButtonConfiguration.ButtonStyle.DisplayButton,
+                    TelemetryItem = button.Item4
                 });
             }
 
@@ -292,6 +293,10 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
 
         }
 
+        private static String CreateSafeName(Tuple<String, String, String, String> button)
+        {
+            return CreateSafeName(button.Item1, button.Item2);
+        }
 
         private static String CreateSafeName(Tuple<String, String, String> button)
         {
