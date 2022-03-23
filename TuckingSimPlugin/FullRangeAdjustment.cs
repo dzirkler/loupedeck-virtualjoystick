@@ -84,5 +84,10 @@
             return String.Format(adjuster.DisplayText, currVal);
         }
 
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
+        }
+
     }
 }

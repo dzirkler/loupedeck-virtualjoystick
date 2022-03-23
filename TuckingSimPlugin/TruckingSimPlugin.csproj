@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FullRangeAdjustment.cs" />
     <Compile Include="MultiPositionSwitch.cs" />
     <Compile Include="IncreaseDecreaseAdjustment.cs" />
@@ -74,6 +75,49 @@
     <EmbeddedResource Include="Icons\TruckingSimPlugin-256.png" />
     <EmbeddedResource Include="Icons\TruckingSimPlugin-32.png" />
     <EmbeddedResource Include="Icons\TruckingSimPlugin-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Brakes-ParkingBrake-Off.png" />
+    <EmbeddedResource Include="Icons\Brakes-ParkingBrake-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Engine-EngineStartStop-Off.png" />
+    <EmbeddedResource Include="Icons\Engine-EngineStartStop-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Horns-AirHorn-Off.png" />
+    <EmbeddedResource Include="Icons\Horns-AirHorn-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Lights-HighBeams-Off.png" />
+    <EmbeddedResource Include="Icons\Lights-HighBeams-On.png" />
+    <EmbeddedResource Include="Icons\Lights-NextLightMode-Off.png" />
+    <EmbeddedResource Include="Icons\Lights-NextLightMode-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Lights-Beacon-Off.png" />
+    <EmbeddedResource Include="Icons\Lights-Beacon-On.png" />
+    <EmbeddedResource Include="Icons\Lights-HazardLights-Off.png" />
+    <EmbeddedResource Include="Icons\Lights-HazardLights-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\CruiseControl-CruiseControlAdjust-Off.png" />
+    <EmbeddedResource Include="Icons\CruiseControl-CruiseControlAdjust-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\View-LeftRight-Off.png" />
+    <EmbeddedResource Include="Icons\View-LeftRight-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Blank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Horns-Horn-Off.png" />
+    <EmbeddedResource Include="Icons\Horns-Horn-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Wipers-WiperSpeedAdjust-Off.png" />
+    <EmbeddedResource Include="Icons\Wipers-WiperSpeedAdjust-On.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

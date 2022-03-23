@@ -40,5 +40,9 @@
             return button == null ? "actionParameter" : button.DisplayText;
         }
 
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
+        }
     }
 }

@@ -12,6 +12,5 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration
         String GroupName { get; set; }
         String FullName { get; set; }
         String DisplayText { get; set; }
-        String IconFileName { get; set; }
     }
 }

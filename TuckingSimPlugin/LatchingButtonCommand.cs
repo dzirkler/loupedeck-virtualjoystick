@@ -24,8 +24,9 @@
                     momentButton.GroupName,
                     "Momentary",
                     LoupedeckOperatingSystem.Win);
-            }
 
+                ButtonStates.Add(momentButton.SafeName, momentButton.DefaultValue);
+            }
         }
 
         protected override async void RunCommand(String actionParameter)
@@ -60,20 +61,16 @@
             if (actionParameter == null) return null;
 
             var button = TruckingSimPlugin.Configuration.Buttons.Find(mb => mb.SafeName == actionParameter);
-            Boolean state = false;
-
-            if (ButtonStates.ContainsKey(actionParameter))
-            {
-                state = ButtonStates[actionParameter];
-            }
-            else
-            {
-                ButtonStates.Add(actionParameter, false);
-            }
-
-            var onOff = state ? "on" : "off";
+            var onOff = ButtonStates[actionParameter] ? "on" : "off";
 
             return button == null ? "actionParameter" : String.Format(button.DisplayText, onOff);
         }
+
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            var onOff = ButtonStates[actionParameter] ? "On" : "Off";
+            return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize), onOff);
+        }
+
     }
 }

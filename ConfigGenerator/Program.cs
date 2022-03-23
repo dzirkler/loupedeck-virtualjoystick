@@ -69,7 +69,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             // Momentary Buttons
             var mommentButtons = new List<Tuple<String, String, String>>
                     {
-                        //new Tuple<String, String, String>("Brakes", "Parking Brake", "Parking Brake"),
+                        new Tuple<String, String, String>("Brakes", "Parking Brake", "Parking Brake"),
                         new Tuple<String, String, String>("Camera", "Camera 1", "Camera 1"),
                         new Tuple<String, String, String>("Camera", "Camera 2", "Camera 2"),
                         new Tuple<String, String, String>("Camera", "Camera 3", "Camera 3"),
@@ -79,16 +79,20 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                         new Tuple<String, String, String>("Camera", "Camera 7", "Camera 7"),
                         new Tuple<String, String, String>("Camera", "Camera 8", "Camera 8"),
                         new Tuple<String, String, String>("Camera", "Next Camera", "Next Camera"),
+                        new Tuple<String, String, String>("Cruise Control", "Cruise Control Resume", "Cruise Control Resume"),
+                        new Tuple<String, String, String>("Cruise Control", "Cruise Control On/Off", "Cruise Control On/Off"),
                         new Tuple<String, String, String>("Drivetrain", "Axle Lift/Lower", "Axle\nLift/\nLower"),
                         new Tuple<String, String, String>("Drivetrain", "Diff Lock", "Diff Lock"),
-                        //new Tuple<String, String, String>("Engine", "Engine Start/Stop", "Start/Stop"),
+                        new Tuple<String, String, String>("Engine", "Engine Start/Stop", "Start/Stop"),
                         new Tuple<String, String, String>("Horns", "Air Horn", "Air Horn"),
                         new Tuple<String, String, String>("Horns", "Horn", "Horn"),
                         new Tuple<String, String, String>("Lights", "Beacon", "Beacon"),
                         new Tuple<String, String, String>("Lights", "Fog Lights", "Fog Lights"),
                         new Tuple<String, String, String>("Lights", "Hazard Lights", "Hazard Lights"),
                         new Tuple<String, String, String>("Lights", "High Beams", "High Beams"),
-                        new Tuple<String, String, String>("Lights", "Next Light Mode", "Next Light Mode")
+                        new Tuple<String, String, String>("Lights", "Next Light Mode", "Next Light Mode"),
+                        new Tuple<String, String, String>("Misc", "Activate (Enter)", "Activate"),
+                        new Tuple<String, String, String>("Trailer", "Trailer Attach/Detatch", "Trailer Attach/Detatch")
                     };
             foreach (var button in mommentButtons)
             {
@@ -98,7 +102,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     GroupName = button.Item1,
                     FullName = button.Item2,
                     DisplayText = button.Item3,
-                    //IconFileName = button.Item2 == "Engine Start/Stop" ? "Icons.engine.png" : null,
                     ButtonId = buttonId++,
                     Style = ButtonConfiguration.ButtonStyle.MomentaryButton
                 });
@@ -107,9 +110,8 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             // Latching Buttons
             var latchingButtons = new List<Tuple<String, String, String>>
                     {
-                        new Tuple<String, String, String>("Brakes", "Parking Brake (latching)", "Parking\nBrake\n({0})"),
-                        new Tuple<String, String, String>("Engine", "Engine Start/Stop (latching)", "Engine\nStart/Stop\n({0})"),
-
+                        //new Tuple<String, String, String>("Brakes", "Parking Brake", "Parking\nBrake\n({0})"),
+                        //new Tuple<String, String, String>("Engine", "Engine Start/Stop", "Engine\nStart/Stop\n({0})"),
                     };
             foreach (var button in latchingButtons)
             {
@@ -119,7 +121,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     FullName = button.Item2,
                     GroupName = button.Item1,
                     DisplayText = button.Item3,
-                    //IconFileName = button.Item2 == "Engine Start/Stop (latching)" ? "Icons.engine.png" : null,
                     ButtonId = buttonId++,
                     Style= ButtonConfiguration.ButtonStyle.LatchingButton,
                     DefaultValue = false
@@ -127,74 +128,74 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             }
 
             // Multi-Position Switches
-            config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
-            {
-                SafeName = CreateSafeName("Transmission", "Drive Mode"),
-                GroupName = "Transmission",
-                FullName = "Drive Mode",
-                DisplayText = "Auto\n{0}",
-                DefaultValue = 2,
-                Positions = 3,
-                PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
-                        {
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 1,
-                                ButtonId = buttonId++,
-                                DisplayName = "R"
-                            },
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 2,
-                                ButtonId = UInt32.MaxValue,
-                                DisplayName = "N"
-                            },
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 3,
-                                ButtonId = buttonId++,
-                                DisplayName = "D"
-                            }
-                        },
-                WrapAround = false
-            });
-            config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
-            {
-                SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
-                GroupName = "Wipers",
-                FullName = "Wiper Speed Adjust",
-                DisplayText = "Wipers\n{0}",
-                DefaultValue = 1,
-                Positions = 4,
-                PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
-                        {
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 1,
-                                ButtonId = UInt32.MaxValue,
-                                DisplayName = "Off"
-                            },
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 2,
-                                ButtonId = buttonId++,
-                                DisplayName = "Int"
-                            },
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 3,
-                                ButtonId = buttonId++,
-                                DisplayName = "Lo"
-                            },
-                            new MultiPositionSwitchConfiguration.MultiPositionValue()
-                            {
-                                PositionId = 4,
-                                ButtonId = buttonId++,
-                                DisplayName = "Hi"
-                            }
-                        },
-                WrapAround = false
-            });
+            //config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
+            //{
+            //    SafeName = CreateSafeName("Transmission", "Drive Mode"),
+            //    GroupName = "Transmission",
+            //    FullName = "Drive Mode",
+            //    DisplayText = "Auto\n{0}",
+            //    DefaultValue = 2,
+            //    Positions = 3,
+            //    PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
+            //            {
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 1,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "R"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 2,
+            //                    ButtonId = UInt32.MaxValue,
+            //                    DisplayName = "N"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 3,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "D"
+            //                }
+            //            },
+            //    WrapAround = false
+            //});
+            //config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
+            //{
+            //    SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
+            //    GroupName = "Wipers",
+            //    FullName = "Wiper Speed Adjust",
+            //    DisplayText = "Wipers\n{0}",
+            //    DefaultValue = 1,
+            //    Positions = 4,
+            //    PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
+            //            {
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 1,
+            //                    ButtonId = UInt32.MaxValue,
+            //                    DisplayName = "Off"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 2,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Int"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 3,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Lo"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 4,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Hi"
+            //                }
+            //            },
+            //    WrapAround = false
+            //});
 
             // Increase/Decrease Adjustments
             config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
@@ -203,7 +204,46 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 GroupName = "Cruise Control",
                 FullName = "Cruise Control Adjust",
                 DisplayText = "Cruise Control",
-                IconFileName = "Icons.car-cruise-control.png",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++
+            });
+            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Transmission", "Drive Mode Adjust"),
+                GroupName = "Transmission",
+                FullName = "Drive Mode Adjust",
+                DisplayText = "Drive Mode",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++
+            });
+            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Route Advisor", "Route Adviser Pages"),
+                GroupName = "Route Advisor",
+                FullName = "Route Advisor Pages",
+                DisplayText = "Route Advisor",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++
+            });
+            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Camera", "Camera Change"),
+                GroupName = "Camera",
+                FullName = "Camera Change",
+                DisplayText = "Camera Change",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++
+            });
+            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
+                GroupName = "Wipers",
+                FullName = "Wiper Speed Adjust",
+                DisplayText = "Wipers",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++

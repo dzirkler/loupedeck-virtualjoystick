@@ -7,76 +7,88 @@ buttons:
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false
+  safeName: Brakes-ParkingBrake
+  groupName: Brakes
+  fullName: Parking Brake
+  displayText: Parking Brake
+- buttonId: 2
+  style: MomentaryButton
+  defaultValue: false
   safeName: Camera-Camera1
   groupName: Camera
   fullName: Camera 1
   displayText: Camera 1
-  iconFileName: 
-- buttonId: 2
+- buttonId: 3
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera2
   groupName: Camera
   fullName: Camera 2
   displayText: Camera 2
-  iconFileName: 
-- buttonId: 3
+- buttonId: 4
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera3
   groupName: Camera
   fullName: Camera 3
   displayText: Camera 3
-  iconFileName: 
-- buttonId: 4
+- buttonId: 5
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera4
   groupName: Camera
   fullName: Camera 4
   displayText: Camera 4
-  iconFileName: 
-- buttonId: 5
+- buttonId: 6
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera5
   groupName: Camera
   fullName: Camera 5
   displayText: Camera 5
-  iconFileName: 
-- buttonId: 6
+- buttonId: 7
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera6
   groupName: Camera
   fullName: Camera 6
   displayText: Camera 6
-  iconFileName: 
-- buttonId: 7
+- buttonId: 8
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera7
   groupName: Camera
   fullName: Camera 7
   displayText: Camera 7
-  iconFileName: 
-- buttonId: 8
+- buttonId: 9
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera8
   groupName: Camera
   fullName: Camera 8
   displayText: Camera 8
-  iconFileName: 
-- buttonId: 9
+- buttonId: 10
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-NextCamera
   groupName: Camera
   fullName: Next Camera
   displayText: Next Camera
-  iconFileName: 
-- buttonId: 10
+- buttonId: 11
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlResume
+  groupName: Cruise Control
+  fullName: Cruise Control Resume
+  displayText: Cruise Control Resume
+- buttonId: 12
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlOnOff
+  groupName: Cruise Control
+  fullName: Cruise Control On/Off
+  displayText: Cruise Control On/Off
+- buttonId: 13
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-AxleLiftLower
@@ -88,152 +100,120 @@ buttons:
     Lift/
 
     Lower
-  iconFileName: 
-- buttonId: 11
+- buttonId: 14
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-DiffLock
   groupName: Drivetrain
   fullName: Diff Lock
   displayText: Diff Lock
-  iconFileName: 
-- buttonId: 12
+- buttonId: 15
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Engine-EngineStartStop
+  groupName: Engine
+  fullName: Engine Start/Stop
+  displayText: Start/Stop
+- buttonId: 16
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-AirHorn
   groupName: Horns
   fullName: Air Horn
   displayText: Air Horn
-  iconFileName: 
-- buttonId: 13
+- buttonId: 17
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-Horn
   groupName: Horns
   fullName: Horn
   displayText: Horn
-  iconFileName: 
-- buttonId: 14
+- buttonId: 18
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-Beacon
   groupName: Lights
   fullName: Beacon
   displayText: Beacon
-  iconFileName: 
-- buttonId: 15
+- buttonId: 19
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-FogLights
   groupName: Lights
   fullName: Fog Lights
   displayText: Fog Lights
-  iconFileName: 
-- buttonId: 16
+- buttonId: 20
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HazardLights
   groupName: Lights
   fullName: Hazard Lights
   displayText: Hazard Lights
-  iconFileName: 
-- buttonId: 17
+- buttonId: 21
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HighBeams
   groupName: Lights
   fullName: High Beams
   displayText: High Beams
-  iconFileName: 
-- buttonId: 18
+- buttonId: 22
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-NextLightMode
   groupName: Lights
   fullName: Next Light Mode
   displayText: Next Light Mode
-  iconFileName: 
-- buttonId: 19
-  style: LatchingButton
+- buttonId: 23
+  style: MomentaryButton
   defaultValue: false
-  safeName: Brakes-ParkingBrakelatching
-  groupName: Brakes
-  fullName: Parking Brake (latching)
-  displayText: >-
-    Parking
-
-    Brake
-
-    ({0})
-  iconFileName: 
-- buttonId: 20
-  style: LatchingButton
+  safeName: Misc-ActivateEnter
+  groupName: Misc
+  fullName: Activate (Enter)
+  displayText: Activate
+- buttonId: 24
+  style: MomentaryButton
   defaultValue: false
-  safeName: Engine-EngineStartStoplatching
-  groupName: Engine
-  fullName: Engine Start/Stop (latching)
-  displayText: >-
-    Engine
-
-    Start/Stop
-
-    ({0})
-  iconFileName: 
-multiPositionSwitches:
-- defaultValue: 2
-  positions: 3
-  positionValues:
-  - positionId: 1
-    buttonId: 21
-    displayName: R
-  - positionId: 2
-    buttonId: 4294967295
-    displayName: N
-  - positionId: 3
-    buttonId: 22
-    displayName: D
-  wrapAround: false
-  safeName: Transmission-DriveMode
-  groupName: Transmission
-  fullName: Drive Mode
-  displayText: >-
-    Auto
-
-    {0}
-  iconFileName: 
-- defaultValue: 1
-  positions: 4
-  positionValues:
-  - positionId: 1
-    buttonId: 4294967295
-    displayName: Off
-  - positionId: 2
-    buttonId: 23
-    displayName: Int
-  - positionId: 3
-    buttonId: 24
-    displayName: Lo
-  - positionId: 4
-    buttonId: 25
-    displayName: Hi
-  wrapAround: false
-  safeName: Wipers-WiperSpeedAdjust
-  groupName: Wipers
-  fullName: Wiper Speed Adjust
-  displayText: >-
-    Wipers
-
-    {0}
-  iconFileName: 
+  safeName: Trailer-TrailerAttachDetatch
+  groupName: Trailer
+  fullName: Trailer Attach/Detatch
+  displayText: Trailer Attach/Detatch
+multiPositionSwitches: []
 increaseDecreaseAdjustments:
-- increaseButtonId: 26
-  decreaseButtonId: 27
-  resetButtonId: 28
+- increaseButtonId: 25
+  decreaseButtonId: 26
+  resetButtonId: 27
   safeName: CruiseControl-CruiseControlAdjust
   groupName: Cruise Control
   fullName: Cruise Control Adjust
   displayText: Cruise Control
-  iconFileName: Icons.car-cruise-control.png
+- increaseButtonId: 28
+  decreaseButtonId: 29
+  resetButtonId: 30
+  safeName: Transmission-DriveModeAdjust
+  groupName: Transmission
+  fullName: Drive Mode Adjust
+  displayText: Drive Mode
+- increaseButtonId: 31
+  decreaseButtonId: 32
+  resetButtonId: 33
+  safeName: RouteAdvisor-RouteAdviserPages
+  groupName: Route Advisor
+  fullName: Route Advisor Pages
+  displayText: Route Advisor
+- increaseButtonId: 34
+  decreaseButtonId: 35
+  resetButtonId: 36
+  safeName: Camera-CameraChange
+  groupName: Camera
+  fullName: Camera Change
+  displayText: Camera Change
+- increaseButtonId: 37
+  decreaseButtonId: 38
+  resetButtonId: 39
+  safeName: Wipers-WiperSpeedAdjust
+  groupName: Wipers
+  fullName: Wiper Speed Adjust
+  displayText: Wipers
 fullRangeAdjustments:
 - axis: X
   defaultValue: 16383
@@ -241,4 +221,3 @@ fullRangeAdjustments:
   groupName: View
   fullName: Left/Right
   displayText: L/R
-  iconFileName: 
