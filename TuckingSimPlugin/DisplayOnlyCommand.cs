@@ -10,6 +10,7 @@
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
     using Loupedeck;
     using Microsoft.CodeAnalysis.CSharp.Scripting;
+    using Pather.CSharp;
     using SCSSdkClient.Object;
 
     public class DisplayOnlyCommand : DisplayOnlyCommandBase
@@ -37,7 +38,10 @@
 
                 TruckingSimPlugin.Telemetry
                     .Select(data => {
-                        return data.GetType().GetProperty(button.TelemetryItem).GetValue(data);
+                        var resolver = new Resolver();
+                        var item = resolver.Resolve(data, button.TelemetryItem);
+                        return item;
+                        //return data.GetType().GetProperty(button.TelemetryItem).GetValue(data);
                     })
                     .DistinctUntilChanged()
                     .Subscribe(itemValue => {

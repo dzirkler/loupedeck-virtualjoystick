@@ -20,6 +20,14 @@ buttons:
   fullName: Game Paused
   displayText: 'Game Paused: {0}'
   telemetryItem: Paused
+- buttonId: 0
+  style: DisplayButton
+  defaultValue: false
+  safeName: Engine-EngineStatus
+  groupName: Engine
+  fullName: Engine Status
+  displayText: 'Engine On: {0}'
+  telemetryItem: TruckValues.CurrentValues.EngineEnabled
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false

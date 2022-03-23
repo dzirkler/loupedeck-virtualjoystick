@@ -70,7 +70,8 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             var displayButtons = new List<Tuple<String, String, String, String>>
                     {
                         new Tuple<String, String, String, String>("Game Info", "Game Active", "Game Active: {0}", "SdkActive"),
-                        new Tuple<String, String, String, String>("Game Info", "Game Paused", "Game Paused: {0}", "Paused")
+                        new Tuple<String, String, String, String>("Game Info", "Game Paused", "Game Paused: {0}", "Paused"),
+                        new Tuple<String, String, String, String>("Engine", "Engine Status", "Engine On: {0}", "TruckValues.CurrentValues.EngineEnabled"),
                     };
             foreach (var button in displayButtons)
             {
