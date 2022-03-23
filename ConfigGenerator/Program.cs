@@ -66,6 +66,25 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             // Start Counting Buttons at 1
             UInt32 buttonId = 1;
 
+            // Display Buttons
+            var displayButtons = new List<Tuple<String, String, String>>
+                    {
+                        new Tuple<String, String, String>("Game Info", "Game Active", "Game Active: {0}"),
+                        new Tuple<String, String, String>("Game Info", "Game Paused", "Game Paused: {0}")
+                    };
+            foreach (var button in displayButtons)
+            {
+                config.Buttons.Add(new ButtonConfiguration()
+                {
+                    SafeName = CreateSafeName(button),
+                    GroupName = button.Item1,
+                    FullName = button.Item2,
+                    DisplayText = button.Item3,
+                    ButtonId = 0,
+                    Style = ButtonConfiguration.ButtonStyle.DisplayButton
+                });
+            }
+
             // Momentary Buttons
             var mommentButtons = new List<Tuple<String, String, String>>
                     {

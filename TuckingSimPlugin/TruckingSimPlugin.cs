@@ -6,13 +6,26 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
     using System.Dynamic;
     using System.IO;
     using System.Linq;
+    using System.Reactive.Linq;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
+    using SCSSdkClient;
+    using SCSSdkClient.Object;
 
     public class TruckingSimPlugin : Plugin
     {
+        private SCSSdkTelemetry _rawTelemetry = new SCSSdkTelemetry();
+        public static IObservable<SCSTelemetry> Telemetry;
+
         public TruckingSimPlugin() : base()
         {
+            Telemetry = Observable
+                            .FromEvent<SCSSdkClient.TelemetryData, SCSTelemetry>(
+                                onNextHandler => (SCSTelemetry data, bool newTimestamp) => onNextHandler(data),
+                                h => _rawTelemetry.Data += h,
+                                h => _rawTelemetry.Data -= h
+                            );
+
             // Load Config 
             LoadConfigurationFromFile();
         }
@@ -26,7 +39,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
             this.Info.DisplayName = "ATS/ETS2 Simulators";
 
             this.Info.Icon16x16 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.Icons.TruckingSimPlugin-16.png");
-            this.Info.Icon32x32= EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.Icons.TruckingSimPlugin-32.png");
+            this.Info.Icon32x32 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.Icons.TruckingSimPlugin-32.png");
             this.Info.Icon48x48 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.Icons.TruckingSimPlugin-48.png");
             this.Info.Icon256x256 = EmbeddedResources.ReadImage("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.Icons.TruckingSimPlugin-256.png");
 

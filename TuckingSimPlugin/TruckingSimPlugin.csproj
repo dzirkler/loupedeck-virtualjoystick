@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin</RootNamespace>
     <AssemblyName>DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,8 +35,22 @@
     <Reference Include="PluginApi">
       <HintPath>..\Referenced DLLs\PluginApi.dll</HintPath>
     </Reference>
+    <Reference Include="SCSSdkClient">
+      <HintPath>..\Referenced DLLs\SCSSdkClient.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,10 +60,12 @@
     <Reference Include="vJoyInterfaceWrap">
       <HintPath>..\Referenced DLLs\vJoyInterfaceWrap.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FullRangeAdjustment.cs" />
+    <Compile Include="DisplayOnlyCommand.cs" />
     <Compile Include="MultiPositionSwitch.cs" />
     <Compile Include="IncreaseDecreaseAdjustment.cs" />
     <Compile Include="TruckingSimPlugin.cs" />
@@ -69,6 +86,7 @@
   <ItemGroup>
     <None Include="LoupedeckPackage.yaml" />
     <EmbeddedResource Include="TruckingSimConfig.yml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icons\TruckingSimPlugin-16.png" />

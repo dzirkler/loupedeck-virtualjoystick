@@ -4,6 +4,20 @@ joystickAxisMaxValue: 32767
 joystickAxisIncrementValue: 100
 momentaryButtonDepressTime: 100
 buttons:
+- buttonId: 0
+  style: DisplayButton
+  defaultValue: false
+  safeName: GameInfo-GameActive
+  groupName: Game Info
+  fullName: Game Active
+  displayText: 'Game Active: {0}'
+- buttonId: 0
+  style: DisplayButton
+  defaultValue: false
+  safeName: GameInfo-GamePaused
+  groupName: Game Info
+  fullName: Game Paused
+  displayText: 'Game Paused: {0}'
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false

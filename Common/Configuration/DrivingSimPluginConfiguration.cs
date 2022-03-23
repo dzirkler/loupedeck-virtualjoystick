@@ -11,20 +11,6 @@
 
     public class DrivingSimPluginConfiguration
     {
-        //private static DrivingSimPluginConfiguration _currentConfiguration;
-        //static public DrivingSimPluginConfiguration CurrentConfiguration
-        //{
-        //    get
-        //    {
-        //        if (_currentConfiguration == null)
-        //        {
-        //            throw new InvalidOperationException("Configuration not yet loaed and Data Directory not set.");
-        //        }
-
-        //        return _currentConfiguration;
-        //    }
-        //}
-
         public DrivingSimPluginConfiguration()
         {
             this.Buttons = new List<ButtonConfiguration>();
@@ -38,7 +24,7 @@
         }
 
         public UInt16 vJoyID { get; set; }
-        
+
         public Int32 JoystickAxisMinValue { get; set; }
         public Int32 JoystickAxisMaxValue { get; set; }
         public Int32 JoystickAxisIncrementValue { get; set; }

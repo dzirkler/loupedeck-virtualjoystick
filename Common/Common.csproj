@@ -69,9 +69,8 @@
     <Compile Include="Configuration\IConfigurationItem.cs" />
     <Compile Include="Configuration\IncreaseDecreaseAdjustmentConfiguration.cs" />
     <Compile Include="Configuration\ButtonConfiguration.cs" />
-    <Compile Include="Configuration\LatchingButtonConfiguration.cs" />
-    <Compile Include="Configuration\MomentaryButtonConfiguration.cs" />
     <Compile Include="Configuration\MultiPositionSwitchConfiguration.cs" />
+    <Compile Include="DisplayOnlyCommandBase.cs" />
     <Compile Include="FullRangeAdjustmentBase.cs" />
     <Compile Include="MultiPositionSwitchBase.cs" />
     <Compile Include="IncreaseDecreaseAdjustmentBase.cs" />

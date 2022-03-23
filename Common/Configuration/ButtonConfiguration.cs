@@ -16,7 +16,8 @@
         public enum ButtonStyle
         {
             MomentaryButton,
-            LatchingButton
+            LatchingButton,
+            DisplayButton
         }
     }
 }
