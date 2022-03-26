@@ -7,27 +7,46 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
     using System.IO;
     using System.Linq;
     using System.Reactive.Linq;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
+    using Pather.CSharp;
     using SCSSdkClient;
     using SCSSdkClient.Object;
 
     public class TruckingSimPlugin : Plugin
     {
         private SCSSdkTelemetry _rawTelemetry = new SCSSdkTelemetry();
-        public static IObservable<SCSTelemetry> Telemetry;
+        public static IObservable<SCSTelemetry> RawTelemetry;
+        public static IObservable<TelemetryItem> Telemetry;
 
         public TruckingSimPlugin() : base()
         {
-            Telemetry = Observable
+            // Load Config 
+            LoadConfigurationFromFile();
+
+            var resolver = new Resolver();
+            var telemetryItems = Configuration
+                        .Items
+                        .Where(i => i.TelemetryItem != null && i.TelemetryItem != String.Empty)
+                        .Select(i => i.TelemetryItem);
+
+            RawTelemetry = Observable
                             .FromEvent<SCSSdkClient.TelemetryData, SCSTelemetry>(
                                 onNextHandler => (SCSTelemetry data, bool newTimestamp) => onNextHandler(data),
                                 h => _rawTelemetry.Data += h,
                                 h => _rawTelemetry.Data -= h
                             );
+            Telemetry = RawTelemetry
+                            .SelectMany(i =>
+                            {
+                                return telemetryItems.ToObservable().Select(item =>
+                                    new TelemetryItem() { Item = item, Value = resolver.ResolveSafe(i, item) }
+                                );
+                            })
+                            .DistinctUntilChanged();
+                            //.DistinctUntilChanged(e => e.Value);
 
-            // Load Config 
-            LoadConfigurationFromFile();
         }
 
         public override Boolean HasNoApplication => true;

@@ -35,19 +35,19 @@
                         "IncreaseDecrease",
                         LoupedeckOperatingSystem.Win);
 
-                    // Seed Storage
-                    Telemetry.Add(item.SafeName, false);
 
-                    // Wire Telemetry Watcher
-                    TruckingSimPlugin.Telemetry
-                        .Select(data => {
-                            return resolver.ResolveSafe(data, item.TelemetryItem);
-                        })
-                        .DistinctUntilChanged()
-                        .Subscribe(itemValue => {
-                            this.Telemetry[item.SafeName] = itemValue;
-                            this.ActionImageChanged(item.SafeName);
-                        });
+                    // Seed Storage
+                    Telemetry.Add(item.SafeName, true);
+
+                    if (item.TelemetryItem != null && item.TelemetryItem != String.Empty)
+                        // Wire Telemetry Watcher
+                        TruckingSimPlugin.Telemetry
+                                .Where(i => i.Item == item.TelemetryItem)
+                                .Subscribe(telemetryItem =>
+                                {
+                                    this.Telemetry[item.SafeName] = telemetryItem.Value;
+                                    this.ActionImageChanged(item.SafeName);
+                                });
                 });
         }
 

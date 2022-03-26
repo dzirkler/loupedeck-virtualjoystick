@@ -15,5 +15,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration
         DisplayTextFormat.Formatter CommandTextFormatter { get; set; }
         DisplayTextFormat.Formatter IconTextFormatter { get; set; }
         String CustomTextFormatterType {  get; set; }
+        String TelemetryItem { get; set; }
     }
 }

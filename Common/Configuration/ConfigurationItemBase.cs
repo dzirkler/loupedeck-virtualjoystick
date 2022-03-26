@@ -12,9 +12,9 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration
         public String GroupName { get; set; }
         public String FullName { get; set; }
         public String TextFormatString { get; set; }
-        public String TelemetryItem { get; set; }
         public DisplayTextFormat.Formatter CommandTextFormatter { get; set; }
         public DisplayTextFormat.Formatter IconTextFormatter { get; set; }
         public String CustomTextFormatterType { get; set; }
+        public String TelemetryItem { get; set; }
     }
 }
