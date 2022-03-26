@@ -8,6 +8,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
     using Microsoft.CodeAnalysis.CSharp.Scripting;
     using Pather.CSharp;
@@ -16,9 +17,6 @@
     public class DisplayOnlyCommand : DisplayOnlyCommandBase
     {
         private Dictionary<String, Object> Telemetry = new Dictionary<String, Object>();
-
-        //private bool SDKRunning = true;
-        //private bool GamePaused = true;
 
         public DisplayOnlyCommand() : base()
         {
@@ -39,11 +37,13 @@
                 Telemetry.Add(button.SafeName, false);
 
                 TruckingSimPlugin.Telemetry
-                    .Select(data => {
+                    .Select(data =>
+                    {
                         return resolver.ResolveSafe(data, button.TelemetryItem);
                     })
                     .DistinctUntilChanged()
-                    .Subscribe(itemValue => {
+                    .Subscribe(itemValue =>
+                    {
                         this.Telemetry[button.SafeName] = itemValue;
                         this.ActionImageChanged(button.SafeName);
                     });
@@ -59,13 +59,18 @@
         {
             if (actionParameter == null || actionParameter == "") return null;
 
-            var button = TruckingSimPlugin.Configuration.Buttons.Find(b => b.SafeName == actionParameter);
-            return button == null ? "actionParameter" : String.Format(button.DisplayText, Telemetry[actionParameter]);
+            return GetConfigItem(actionParameter).FormatCommandText(Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
-            return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
+            return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
+
+        private IConfigurationItem GetConfigItem(String safeName)
+        {
+            return TruckingSimPlugin.Configuration.Buttons.Where(b => b.SafeName == safeName).First();
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 {
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
     using Pather.CSharp;
     using System;
@@ -77,23 +78,17 @@
         {
             if (actionParameter == null || actionParameter == "") return null;
 
-            var adjuster = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Find(b => b.SafeName == actionParameter);
-            return adjuster == null ? "actionParameter" : String.Format(adjuster.DisplayText, Telemetry[actionParameter]);
+            return GetConfigItem(actionParameter).FormatCommandText(Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
-            //return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
-            var adjuster = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Where(a => a.SafeName == actionParameter).First();
-            if (adjuster.TelemetryItem != null)
-            {
-                var onOff = (Boolean)Telemetry[actionParameter] ? "On" : "Off";
-                return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize), onOff);
-            }
-            else
-            {
-                return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
-            }
+            return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
+        }
+
+        private IConfigurationItem GetConfigItem(String safeName)
+        {
+            return TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Where(i => i.SafeName == safeName).First();
         }
     }
 }

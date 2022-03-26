@@ -1,6 +1,7 @@
 ﻿namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 {
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
     using System;
     using System.Collections.Generic;
@@ -10,7 +11,7 @@
 
     public class MultiPositionSwitch : MultiPositionSwitchBase
     {
-        private Dictionary<String, Int32> SwitchStates = new Dictionary<String, Int32>();
+        private Dictionary<String, Int32> Telemetry = new Dictionary<String, Int32>();
 
         public MultiPositionSwitch() : base(true)
         {
@@ -25,7 +26,7 @@
                     "Multi-Position Switch",
                     LoupedeckOperatingSystem.Win);
 
-                SwitchStates.Add(mpSwitch.SafeName, mpSwitch.DefaultValue);
+                Telemetry.Add(mpSwitch.SafeName, mpSwitch.DefaultValue);
             }
 
         }
@@ -37,13 +38,13 @@
             var mpSwitch = mpSwitches.Where(d => d.SafeName == actionParameter).First();
             
             // Reset to default value on press
-            SwitchStates[actionParameter] = mpSwitch.DefaultValue;
+            Telemetry[actionParameter] = mpSwitch.DefaultValue;
 
             //Set vJoy State
             foreach (var position in mpSwitch.PositionValues)
             {
                 if (position.ButtonId != UInt32.MaxValue)
-                    SetButtonState(joyId, position.ButtonId, SwitchStates[actionParameter] == position.PositionId);
+                    SetButtonState(joyId, position.ButtonId, Telemetry[actionParameter] == position.PositionId);
             }
 
             // Update Text/Image
@@ -57,19 +58,19 @@
             var mpSwitch = mpSwitches.Where(d => d.SafeName == actionParameter).First();
 
             // Increment
-            var newValue = SwitchStates[actionParameter];
+            var newValue = Telemetry[actionParameter];
             newValue += ticks;
             if (newValue > mpSwitch.Positions)
                 newValue = mpSwitch.WrapAround ? 1 : mpSwitch.Positions;
             if (newValue < 1)
                 newValue = mpSwitch.WrapAround ? mpSwitch.Positions : 1;
-            SwitchStates[actionParameter] = newValue;
+            Telemetry[actionParameter] = newValue;
 
             //Set vJoy State
             foreach (var position in mpSwitch.PositionValues)
             {
                 if (position.ButtonId != UInt32.MaxValue)
-                    SetButtonState(joyId, position.ButtonId, SwitchStates[actionParameter] == position.PositionId);
+                    SetButtonState(joyId, position.ButtonId, Telemetry[actionParameter] == position.PositionId);
             }
 
             // Update Text/Image
@@ -78,19 +79,19 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
+            if (actionParameter == null || actionParameter == "") return null;
 
-            if (actionParameter == null)
-                return String.Empty;
+            return GetConfigItem(actionParameter).FormatCommandText(Telemetry[actionParameter]);
+        }
 
-            var mpSwitches = TruckingSimPlugin.Configuration.MultiPositionSwitches;
-            var mpSwitch = mpSwitches.Where(mps => mps.SafeName == actionParameter).First();
-            if (mpSwitch == null)
-            {
-                return "actionParameter";
-            }
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
+        }
 
-            var currVal = mpSwitch.PositionValues.Find(mps => mps.PositionId == SwitchStates[actionParameter]).DisplayName;
-            return String.Format(mpSwitch.DisplayText, currVal);
+        private IConfigurationItem GetConfigItem(String safeName)
+        {
+            return TruckingSimPlugin.Configuration.MultiPositionSwitches.Where(i => i.SafeName == safeName).First();
         }
 
     }

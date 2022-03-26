@@ -7,6 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
     using Pather.CSharp;
 
@@ -57,23 +58,17 @@
         {
             if (actionParameter == null || actionParameter == "") return null;
 
-            var button = TruckingSimPlugin.Configuration.Buttons.Find(b => b.SafeName == actionParameter);
-            return button == null ? "actionParameter" : String.Format(button.DisplayText, Telemetry[actionParameter]);
-
+            return GetConfigItem(actionParameter).FormatCommandText(Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
-            var button = TruckingSimPlugin.Configuration.Buttons.Where(b => b.SafeName == actionParameter).First();
-            if (button.TelemetryItem != null)
-            {
-                var onOff = (Boolean)Telemetry[actionParameter] ? "On" : "Off";
-                return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize), onOff);
-            }
-            else
-            {
-                return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
-            }
+            return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
+        }
+
+        private IConfigurationItem GetConfigItem(String safeName)
+        {
+            return TruckingSimPlugin.Configuration.Buttons.Where(b => b.SafeName == safeName).First();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 {
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
     using System;
     using System.Collections.Generic;
@@ -69,24 +70,19 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
+            if (actionParameter == null || actionParameter == "") return null;
 
-            if (actionParameter == null)
-                return String.Empty;
-
-            var adjusters = TruckingSimPlugin.Configuration.FullRangeAdjustments;
-            var adjuster = adjusters.Where(a => a.SafeName == actionParameter).First();
-            if (adjuster == null)
-            {
-                return "actionParameter";
-            }
-
-            var currVal = Telemetry[actionParameter];
-            return String.Format(adjuster.DisplayText, currVal);
+            return GetConfigItem(actionParameter).FormatCommandText(Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
-            return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize));
+            return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
+        }
+
+        private IConfigurationItem GetConfigItem(String safeName)
+        {
+            return TruckingSimPlugin.Configuration.FullRangeAdjustments.Where(i => i.SafeName == safeName).First();
         }
 
     }

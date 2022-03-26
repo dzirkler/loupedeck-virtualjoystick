@@ -10,244 +10,285 @@ buttons:
   safeName: GameInfo-GameStarted
   groupName: Game Info
   fullName: Game Started
-  displayText: >-
+  textFormatString: >-
     Game Running:
      {0}
   telemetryItem: SdkActive
+  commandTextFormatter: FullName
+  iconTextFormatter: YesNo
 - buttonId: 0
   style: DisplayButton
   defaultValue: false
   safeName: GameInfo-GamePaused
   groupName: Game Info
   fullName: Game Paused
-  displayText: >-
+  textFormatString: >-
     Game Paused:
      {0}
   telemetryItem: Paused
+  commandTextFormatter: FullName
+  iconTextFormatter: YesNo
 - buttonId: 0
   style: DisplayButton
   defaultValue: false
-  safeName: Engine-EngineStatus
+  safeName: Transmission-SelectedGear
   groupName: Transmission
   fullName: Selected Gear
-  displayText: >-
-    Auto:
+  textFormatString: >-
+    Gear:
      {0}
   telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
+  commandTextFormatter: FullName
+  iconTextFormatter: Custom
+  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false
   safeName: Brakes-ParkingBrake
   groupName: Brakes
   fullName: Parking Brake
-  displayText: >-
+  textFormatString: >-
     Parking Brake
      {0}
   telemetryItem: TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 2
   style: MomentaryButton
   defaultValue: false
   safeName: Engine-EngineStartStop
   groupName: Engine
   fullName: Engine Start/Stop
-  displayText: >-
+  textFormatString: >-
     Engine On:
      {0}
   telemetryItem: TruckValues.CurrentValues.EngineEnabled
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 3
   style: MomentaryButton
   defaultValue: false
   safeName: CruiseControl-CruiseControlOnOff
   groupName: Cruise Control
-  fullName: TruckValues.CurrentValues.DashboardValues.CruiseControl
-  displayText: >-
+  fullName: Cruise Control On/Off
+  textFormatString: >-
     Cruise Control On:
      {0}
   telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 4
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-AxleLiftLower
   groupName: Drivetrain
   fullName: Axle Lift/Lower
-  displayText: >-
+  textFormatString: >-
     Axle
 
     Lift On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LiftAxleIndicator
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 5
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-DiffLock
   groupName: Drivetrain
   fullName: Diff Lock
-  displayText: >-
+  textFormatString: >-
     Diff Lock On:
      {0}
   telemetryItem: TruckValues.CurrentValues.DifferentialLock
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 6
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-Beacon
   groupName: Lights
   fullName: Beacon
-  displayText: >-
+  textFormatString: >-
     Beacon On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LightsValues.Beacon
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 7
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-FogLights
   groupName: Lights
   fullName: Fog Lights
-  displayText: >-
+  textFormatString: >-
     Fog Lights On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LightsValues.AuxFront
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 8
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HazardLights
   groupName: Lights
   fullName: Hazard Lights
-  displayText: >-
+  textFormatString: >-
     Hazard Lights On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LightsValues.HazardWarningLights
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 9
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HighBeams
   groupName: Lights
   fullName: High Beams
-  displayText: >-
+  textFormatString: >-
     High Beams On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LightsValues.BeamHigh
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 10
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-NextLightMode
   groupName: Lights
   fullName: Next Light Mode
-  displayText: >-
+  textFormatString: >-
     Headlights On:
      {0}
   telemetryItem: TruckValues.CurrentValues.LightsValues.BeamLow
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 11
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera1
   groupName: Camera
   fullName: Camera 1
-  displayText: Camera 1
-  telemetryItem: 
+  textFormatString: Camera 1
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 12
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera2
   groupName: Camera
   fullName: Camera 2
-  displayText: Camera 2
-  telemetryItem: 
+  textFormatString: Camera 2
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 13
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera3
   groupName: Camera
   fullName: Camera 3
-  displayText: Camera 3
-  telemetryItem: 
+  textFormatString: Camera 3
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 14
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera4
   groupName: Camera
   fullName: Camera 4
-  displayText: Camera 4
-  telemetryItem: 
+  textFormatString: Camera 4
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 15
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera5
   groupName: Camera
   fullName: Camera 5
-  displayText: Camera 5
-  telemetryItem: 
+  textFormatString: Camera 5
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 16
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera6
   groupName: Camera
   fullName: Camera 6
-  displayText: Camera 6
-  telemetryItem: 
+  textFormatString: Camera 6
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 17
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera7
   groupName: Camera
   fullName: Camera 7
-  displayText: Camera 7
-  telemetryItem: 
+  textFormatString: Camera 7
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 18
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera8
   groupName: Camera
   fullName: Camera 8
-  displayText: Camera 8
-  telemetryItem: 
+  textFormatString: Camera 8
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 19
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-NextCamera
   groupName: Camera
   fullName: Next Camera
-  displayText: Next Camera
-  telemetryItem: 
+  textFormatString: Next Camera
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 20
   style: MomentaryButton
   defaultValue: false
   safeName: CruiseControl-CruiseControlResume
   groupName: Cruise Control
   fullName: Cruise Control Resume
-  displayText: Cruise Control Resume
-  telemetryItem: 
+  textFormatString: Cruise Control Resume
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 21
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-AirHorn
   groupName: Horns
   fullName: Air Horn
-  displayText: Air Horn
-  telemetryItem: 
+  textFormatString: Air Horn
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 22
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-Horn
   groupName: Horns
   fullName: Horn
-  displayText: Horn
-  telemetryItem: 
+  textFormatString: Horn
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 23
   style: MomentaryButton
   defaultValue: false
   safeName: Misc-ActivateEnter
   groupName: Misc
   fullName: Activate (Enter)
-  displayText: Activate
-  telemetryItem: 
+  textFormatString: Activate
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - buttonId: 24
   style: MomentaryButton
   defaultValue: false
   safeName: Trailer-TrailerAttachDetatch
   groupName: Trailer
   fullName: Trailer Attach/Detatch
-  displayText: Trailer Attach/Detatch
-  telemetryItem: 
+  textFormatString: Trailer Attach/Detatch
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 multiPositionSwitches: []
 increaseDecreaseAdjustments:
 - increaseButtonId: 25
@@ -256,45 +297,57 @@ increaseDecreaseAdjustments:
   safeName: CruiseControl-CruiseControlAdjust
   groupName: Cruise Control
   fullName: Cruise Control Adjust
-  displayText: Cruise Control
+  textFormatString: Cruise Control
   telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - increaseButtonId: 28
   decreaseButtonId: 29
   resetButtonId: 30
   safeName: Transmission-DriveModeAdjust
   groupName: Transmission
   fullName: Drive Mode Adjust
-  displayText: Drive Mode
-  telemetryItem: 
+  textFormatString: >-
+    Gear:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
+  commandTextFormatter: FullName
+  iconTextFormatter: Custom
+  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
 - increaseButtonId: 31
   decreaseButtonId: 32
   resetButtonId: 33
   safeName: RouteAdvisor-RouteAdviserPages
   groupName: Route Advisor
   fullName: Route Advisor Pages
-  displayText: Route Advisor
-  telemetryItem: 
+  textFormatString: Route Advisor
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - increaseButtonId: 34
   decreaseButtonId: 35
   resetButtonId: 36
   safeName: Camera-CameraChange
   groupName: Camera
   fullName: Camera Change
-  displayText: Camera Change
-  telemetryItem: 
+  textFormatString: Camera Change
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 - increaseButtonId: 37
   decreaseButtonId: 38
   resetButtonId: 39
   safeName: Wipers-WiperSpeedAdjust
   groupName: Wipers
   fullName: Wiper Speed Adjust
-  displayText: Wipers
+  textFormatString: Wipers
   telemetryItem: TruckValues.CurrentValues.DashboardValues.Wipers
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
 fullRangeAdjustments:
 - axis: Rx
   defaultValue: 16383
   safeName: View-LeftRight
   groupName: View
   fullName: Left/Right
-  displayText: L/R
-  telemetryItem: 
+  textFormatString: L/R
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly

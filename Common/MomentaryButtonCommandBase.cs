@@ -9,6 +9,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
+    using DesertSunSoftware.LoupedeckVirtualJoystick.Common.Configuration;
     using Loupedeck;
 
     public abstract class MomentaryButtonCommandBase : PluginDynamicCommand
@@ -25,5 +26,6 @@
                 .Delay(new TimeSpan(0, 0, 0, 0, duration))
                 .Subscribe(_ => VirtualJoystick.SendButtonPress(vjoy, vbutton, false));
         }
+
     }
 }

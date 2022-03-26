@@ -12,6 +12,7 @@ using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Help;
 using Spectre.Console;
+using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
 
 namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
 {
@@ -72,30 +73,37 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 GroupName = "Game Info",
                 FullName = "Game Started",
                 SafeName = CreateSafeName("Game Info", "Game Started"),
-                DisplayText = "Game Running:\n {0}",
+                TextFormatString = "Game Running:\n {0}",
                 ButtonId = 0,
                 Style = ButtonConfiguration.ButtonStyle.DisplayButton,
-                TelemetryItem = "SdkActive"
+                TelemetryItem = "SdkActive",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.YesNo,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Game Info",
                 FullName = "Game Paused",
                 SafeName = CreateSafeName("Game Info", "Game Paused"),
-                DisplayText = "Game Paused:\n {0}",
+                TextFormatString = "Game Paused:\n {0}",
                 ButtonId = 0,
                 Style = ButtonConfiguration.ButtonStyle.DisplayButton,
-                TelemetryItem = "Paused"
+                TelemetryItem = "Paused",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.YesNo,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Transmission",
                 FullName = "Selected Gear",
-                SafeName = CreateSafeName("Engine", "Engine Status"),
-                DisplayText = "Auto:\n {0}",
+                SafeName = CreateSafeName("Transmission", "Selected Gear"),
+                TextFormatString = "Gear:\n {0}",
                 ButtonId = 0,
                 Style = ButtonConfiguration.ButtonStyle.DisplayButton,
-                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.GearDashboards"
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.GearDashboards",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.Custom,
+                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
             });
 
             // Momentary Buttons
@@ -114,100 +122,120 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 GroupName = "Brakes",
                 FullName = "Parking Brake",
                 SafeName = CreateSafeName("Brakes", "Parking Brake"),
-                DisplayText = "Parking Brake\n {0}",
+                TextFormatString = "Parking Brake\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake"
+                TelemetryItem = "TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Engine",
                 FullName = "Engine Start/Stop",
                 SafeName = CreateSafeName("Engine", "Engine Start/Stop"),
-                DisplayText = "Engine On:\n {0}",
+                TextFormatString = "Engine On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.EngineEnabled"
+                TelemetryItem = "TruckValues.CurrentValues.EngineEnabled",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Cruise Control",
-                FullName = "TruckValues.CurrentValues.DashboardValues.CruiseControl",
+                FullName = "Cruise Control On/Off",
                 SafeName = CreateSafeName("Cruise Control", "Cruise Control On/Off"),
-                DisplayText = "Cruise Control On:\n {0}",
+                TextFormatString = "Cruise Control On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.CruiseControl"
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.CruiseControl",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Drivetrain",
                 FullName = "Axle Lift/Lower",
                 SafeName = CreateSafeName("Drivetrain", "Axle Lift/Lower"),
-                DisplayText = "Axle\nLift On:\n {0}",
+                TextFormatString = "Axle\nLift On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LiftAxleIndicator"
+                TelemetryItem = "TruckValues.CurrentValues.LiftAxleIndicator",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Drivetrain",
                 FullName = "Diff Lock",
                 SafeName = CreateSafeName("Drivetrain", "Diff Lock"),
-                DisplayText = "Diff Lock On:\n {0}",
+                TextFormatString = "Diff Lock On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.DifferentialLock"
+                TelemetryItem = "TruckValues.CurrentValues.DifferentialLock",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Beacon",
                 SafeName = CreateSafeName("Lights", "Beacon"),
-                DisplayText = "Beacon On:\n {0}",
+                TextFormatString = "Beacon On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LightsValues.Beacon"
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.Beacon",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Fog Lights",
                 SafeName = CreateSafeName("Lights", "Fog Lights"),
-                DisplayText = "Fog Lights On:\n {0}",
+                TextFormatString = "Fog Lights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LightsValues.AuxFront"
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.AuxFront",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Hazard Lights",
                 SafeName = CreateSafeName("Lights", "Hazard Lights"),
-                DisplayText = "Hazard Lights On:\n {0}",
+                TextFormatString = "Hazard Lights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LightsValues.HazardWarningLights"
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.HazardWarningLights",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "High Beams",
                 SafeName = CreateSafeName("Lights", "High Beams"),
-                DisplayText = "High Beams On:\n {0}",
+                TextFormatString = "High Beams On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamHigh"
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamHigh",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.Buttons.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Next Light Mode",
                 SafeName = CreateSafeName("Lights", "Next Light Mode"),
-                DisplayText = "Headlights On:\n {0}",
+                TextFormatString = "Headlights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamLow"
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamLow",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
 
             var mommentButtons = new List<Tuple<String, String, String>>
@@ -234,9 +262,11 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     SafeName = CreateSafeName(button),
                     GroupName = button.Item1,
                     FullName = button.Item2,
-                    DisplayText = button.Item3,
+                    TextFormatString = button.Item3,
                     ButtonId = buttonId++,
-                    Style = ButtonConfiguration.ButtonStyle.MomentaryButton
+                    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
+                    CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                    IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
                 });
             }
 
@@ -253,10 +283,12 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     SafeName = CreateSafeName(button),
                     FullName = button.Item2,
                     GroupName = button.Item1,
-                    DisplayText = button.Item3,
+                    TextFormatString = button.Item3,
                     ButtonId = buttonId++,
                     Style = ButtonConfiguration.ButtonStyle.LatchingButton,
-                    DefaultValue = false
+                    DefaultValue = false,
+                    CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                    IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
                 });
             }
 
@@ -336,52 +368,64 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 SafeName = CreateSafeName("Cruise Control", "Cruise Control Adjust"),
                 GroupName = "Cruise Control",
                 FullName = "Cruise Control Adjust",
-                DisplayText = "Cruise Control",
+                TextFormatString = "Cruise Control",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++,
                 TelemetryItem = "TruckValues.CurrentValues.DashboardValues.CruiseControl",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Transmission", "Drive Mode Adjust"),
                 GroupName = "Transmission",
                 FullName = "Drive Mode Adjust",
-                DisplayText = "Drive Mode",
+                TextFormatString = "Gear:\n {0}",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
-                ResetButtonId = buttonId++
+                ResetButtonId = buttonId++,
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.GearDashboards",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.Custom,
+                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
             });
             config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Route Advisor", "Route Adviser Pages"),
                 GroupName = "Route Advisor",
                 FullName = "Route Advisor Pages",
-                DisplayText = "Route Advisor",
+                TextFormatString = "Route Advisor",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
-                ResetButtonId = buttonId++
+                ResetButtonId = buttonId++,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Camera", "Camera Change"),
                 GroupName = "Camera",
                 FullName = "Camera Change",
-                DisplayText = "Camera Change",
+                TextFormatString = "Camera Change",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
-                ResetButtonId = buttonId++
+                ResetButtonId = buttonId++,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
             config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
                 GroupName = "Wipers",
                 FullName = "Wiper Speed Adjust",
-                DisplayText = "Wipers",
+                TextFormatString = "Wipers",
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++,
                 TelemetryItem = "TruckValues.CurrentValues.DashboardValues.Wipers",
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
 
 
@@ -391,15 +435,18 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 SafeName = CreateSafeName("View", "Left/Right"),
                 GroupName = "View",
                 FullName = "Left/Right",
-                DisplayText = "L/R",
+                TextFormatString = "L/R",
                 Axis = FullRangeAdjustmentConfiguration.JoystickAxis.Rx,
-                DefaultValue = (config.JoystickAxisMaxValue - config.JoystickAxisMinValue) / 2
+                DefaultValue = (config.JoystickAxisMaxValue - config.JoystickAxisMinValue) / 2,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
 
             // Save as Init Config
             //Configuration = config;
 
             var serializer = new SerializerBuilder()
+                .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull)
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
             var stringResult = serializer.Serialize(config);

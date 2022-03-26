@@ -126,6 +126,7 @@
     <Compile Include="DisplayOnlyCommand.cs" />
     <Compile Include="MultiPositionSwitch.cs" />
     <Compile Include="IncreaseDecreaseAdjustment.cs" />
+    <Compile Include="TransmissionGearFormatter.cs" />
     <Compile Include="TruckingSimPlugin.cs" />
     <Compile Include="LatchingButtonCommand.cs" />
     <Compile Include="MomentaryButtonCommand.cs" />

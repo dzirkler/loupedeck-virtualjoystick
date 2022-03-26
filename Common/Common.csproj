@@ -71,6 +71,15 @@
     <Compile Include="Configuration\ButtonConfiguration.cs" />
     <Compile Include="Configuration\MultiPositionSwitchConfiguration.cs" />
     <Compile Include="DisplayOnlyCommandBase.cs" />
+    <Compile Include="DisplayTextFormat.cs" />
+    <Compile Include="Formatters\CustomTextFormatter.cs" />
+    <Compile Include="Formatters\DisplayTextFormatter.cs" />
+    <Compile Include="Formatters\FullNameFormatter.cs" />
+    <Compile Include="Formatters\TrueFalseFormatter.cs" />
+    <Compile Include="Formatters\YesNoFormatter.cs" />
+    <Compile Include="Formatters\OnOffFormatter.cs" />
+    <Compile Include="Formatters\IconOnlyFormatter.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
     <Compile Include="FullRangeAdjustmentBase.cs" />
     <Compile Include="MultiPositionSwitchBase.cs" />
     <Compile Include="IncreaseDecreaseAdjustmentBase.cs" />

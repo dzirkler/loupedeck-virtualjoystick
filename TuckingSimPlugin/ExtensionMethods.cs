@@ -15,6 +15,18 @@
             return GetIconImage(safeName, displayText, "On");
         }
 
+        public static BitmapImage GetIconImage(this String safeName, String displayText, Object telemetry)
+        {
+            if (telemetry != null && telemetry is Boolean)
+            {
+                return GetIconImage(safeName, displayText, (Boolean)telemetry ? "On" : "Off");
+            }
+            else
+            {
+                return GetIconImage(safeName, displayText);
+            }
+        }
+
         public static BitmapImage GetIconImage(this String safeName, String displayText, String state)
         {
             if (safeName == null) return GetBlankImage(displayText);
