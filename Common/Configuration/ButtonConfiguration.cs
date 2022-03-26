@@ -2,8 +2,6 @@
 {
     using System;
 
-    using YamlDotNet.Serialization;
-
     public class ButtonConfiguration : ConfigurationItemBase
     {
         public ButtonConfiguration() { }
@@ -12,7 +10,6 @@
         public ButtonStyle Style { get; set; }
         public Boolean DefaultValue { get; set; }
         
-
         public enum ButtonStyle
         {
             MomentaryButton,

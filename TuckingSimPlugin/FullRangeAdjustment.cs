@@ -15,32 +15,39 @@
 
         public FullRangeAdjustment() : base(true)
         {
-            foreach (var adjuster in TruckingSimPlugin.Configuration.FullRangeAdjustments)
-            {
-                // Add a Dial
-                this.AddParameter(
-                    adjuster.SafeName,
-                    adjuster.FullName,
-                    adjuster.GroupName,
-                    "Dial",
-                    LoupedeckOperatingSystem.Win);
 
-                // Set Current Val
-                Telemetry.Add(adjuster.SafeName, adjuster.DefaultValue);
-            }
+            TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i is FullRangeAdjustmentConfiguration)
+                .Cast<FullRangeAdjustmentConfiguration>()
+                .ToList()
+                .ForEach(item =>
+                {
+                                // Add a Display Button
+                                this.AddParameter(
+                        item.SafeName,
+                        item.FullName,
+                        item.GroupName,
+                        "Dial",
+                        LoupedeckOperatingSystem.Win);
+
+                        // Seed Storage
+                        Telemetry.Add(item.SafeName, item.DefaultValue);
+
+                });
         }
 
         protected override async void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var adjusters = TruckingSimPlugin.Configuration.FullRangeAdjustments;
-            var adjuster = adjusters.Find(d => d.SafeName == actionParameter);
-            
+            var item = GetConfigItem(actionParameter);
+
             // Reset to default value on press
-            Telemetry[actionParameter] = adjuster.DefaultValue;
+            Telemetry[actionParameter] = item.DefaultValue;
 
             // Set Axis
-            SetAxis(joyId, adjuster.Axis, Telemetry[actionParameter]);
+            SetAxis(joyId, item.Axis, Telemetry[actionParameter]);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -49,8 +56,6 @@
         protected override void ApplyAdjustment(String actionParameter, Int32 ticks)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var adjusters = TruckingSimPlugin.Configuration.FullRangeAdjustments;
-            var adjuster = adjusters.Find(d => d.SafeName == actionParameter);
 
             // Increment
             var newValue = Telemetry[actionParameter];
@@ -62,7 +67,7 @@
             Telemetry[actionParameter] = newValue;
 
             // Set Axis
-            SetAxis(joyId, adjuster.Axis, Telemetry[actionParameter]);
+            SetAxis(joyId, GetConfigItem(actionParameter).Axis, Telemetry[actionParameter]);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -80,9 +85,14 @@
             return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
 
-        private IConfigurationItem GetConfigItem(String safeName)
+        private FullRangeAdjustmentConfiguration GetConfigItem(String safeName)
         {
-            return TruckingSimPlugin.Configuration.FullRangeAdjustments.Where(i => i.SafeName == safeName).First();
+            return TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(b => b.SafeName == safeName)
+                .Cast<FullRangeAdjustmentConfiguration>()
+                .First();
         }
 
     }

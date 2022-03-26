@@ -19,41 +19,44 @@
         {
             var resolver = new Resolver();
 
-            foreach (var adjuster in TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments)
-            {
-                // Add a Dial
-                this.AddParameter(
-                    adjuster.SafeName,
-                    adjuster.FullName,
-                    adjuster.GroupName,
-                    "Increase Decrease Adjustments",
-                    LoupedeckOperatingSystem.Win);
+            TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i is IncreaseDecreaseAdjustmentConfiguration)
+                .Cast<IncreaseDecreaseAdjustmentConfiguration>()
+                .ToList()
+                .ForEach(item =>
+                {
+                    // Add a Display Button
+                    this.AddParameter(
+                        item.SafeName,
+                        item.FullName,
+                        item.GroupName,
+                        "IncreaseDecrease",
+                        LoupedeckOperatingSystem.Win);
 
+                    // Seed Storage
+                    Telemetry.Add(item.SafeName, false);
 
-                // Seed Storage
-                Telemetry.Add(adjuster.SafeName, false);
-
-                TruckingSimPlugin.Telemetry
-                    .Select(data => {
-                        return resolver.ResolveSafe(data, adjuster.TelemetryItem);
-                    })
-                    .DistinctUntilChanged()
-                    .Subscribe(itemValue => {
-                        this.Telemetry[adjuster.SafeName] = itemValue;
-                        this.ActionImageChanged(adjuster.SafeName);
-                    });
-
-            }
-
+                    // Wire Telemetry Watcher
+                    TruckingSimPlugin.Telemetry
+                        .Select(data => {
+                            return resolver.ResolveSafe(data, item.TelemetryItem);
+                        })
+                        .DistinctUntilChanged()
+                        .Subscribe(itemValue => {
+                            this.Telemetry[item.SafeName] = itemValue;
+                            this.ActionImageChanged(item.SafeName);
+                        });
+                });
         }
 
         protected override async void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var incDecAdjusters = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments;
-            var adjuster = incDecAdjusters.Where(b => b.SafeName == actionParameter).First();
+            var item = GetConfigItem(actionParameter);
 
-            await SendButtonPress(joyId, adjuster.ResetButtonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
+            await SendButtonPress(joyId, item.ResetButtonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -62,11 +65,10 @@
         protected override async void ApplyAdjustment(String actionParameter, Int32 ticks)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var incDecAdjusters = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments;
-            var adjuster = incDecAdjusters.Where(b => b.SafeName == actionParameter).First();
+            var item = GetConfigItem(actionParameter);
 
             // Increase or Decrease?
-            var buttonId = ticks > 0 ? adjuster.IncreaseButtonId : adjuster.DecreaseButtonId;
+            var buttonId = ticks > 0 ? item.IncreaseButtonId : item.DecreaseButtonId;
 
             await SendButtonPress(joyId, buttonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
 
@@ -86,9 +88,14 @@
             return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
 
-        private IConfigurationItem GetConfigItem(String safeName)
+        private IncreaseDecreaseAdjustmentConfiguration GetConfigItem(String safeName)
         {
-            return TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Where(i => i.SafeName == safeName).First();
+            return TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(b => b.SafeName == safeName)
+                .Cast<IncreaseDecreaseAdjustmentConfiguration>()
+                .First();
         }
     }
 }

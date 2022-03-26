@@ -19,39 +19,47 @@
         {
             var resolver = new Resolver();
 
-            foreach (var button in TruckingSimPlugin.Configuration.Buttons
-                .Where(b => b.Style == Common.Configuration.ButtonConfiguration.ButtonStyle.MomentaryButton))
-            {
-                // Add a Moment Button
-                this.AddParameter(
-                    button.SafeName,
-                    button.FullName,
-                    button.GroupName,
-                    "Momentary",
-                    LoupedeckOperatingSystem.Win);
+            TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i is ButtonConfiguration)
+                .Cast<ButtonConfiguration>()
+                .Where(i => i.Style == ButtonConfiguration.ButtonStyle.MomentaryButton)
+                .ToList()
+                .ForEach(item =>
+                {
+                    // Add a Display Button
+                    this.AddParameter(
+                        item.SafeName,
+                        item.FullName,
+                        item.GroupName,
+                        "Display",
+                        LoupedeckOperatingSystem.Win);
 
-                // Seed Storage
-                Telemetry.Add(button.SafeName, false);
+                    // Seed Storage
+                    Telemetry.Add(item.SafeName, false);
 
-                TruckingSimPlugin.Telemetry
-                    .Select(data => {
-                        return resolver.ResolveSafe(data, button.TelemetryItem);
-                    })
-                    .DistinctUntilChanged()
-                    .Subscribe(itemValue => {
-                        this.Telemetry[button.SafeName] = itemValue;
-                        this.ActionImageChanged(button.SafeName);
-                    });
-            }
+                    // Wire Telemetry Watcher
+                    TruckingSimPlugin.Telemetry
+                        .Select(data =>
+                        {
+                            return resolver.ResolveSafe(data, item.TelemetryItem);
+                        })
+                        .DistinctUntilChanged()
+                        .Subscribe(itemValue =>
+                        {
+                            this.Telemetry[item.SafeName] = itemValue;
+                            this.ActionImageChanged(item.SafeName);
+                        });
+                });
         }
 
         protected override async void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var buttons = TruckingSimPlugin.Configuration.Buttons;
-            var button = buttons.Where(b => b.SafeName == actionParameter).First();
+            var item = GetConfigItem(actionParameter);
 
-            await SendButtonPress(joyId, button.ButtonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
+            await SendButtonPress(joyId, item.ButtonId, TruckingSimPlugin.Configuration.MomentaryButtonDepressTime);
         }
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
@@ -66,9 +74,14 @@
             return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
 
-        private IConfigurationItem GetConfigItem(String safeName)
+        private ButtonConfiguration GetConfigItem(String safeName)
         {
-            return TruckingSimPlugin.Configuration.Buttons.Where(b => b.SafeName == safeName).First();
+            return TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(b => b.SafeName == safeName)
+                .Cast<ButtonConfiguration>()
+                .First();
         }
     }
 }

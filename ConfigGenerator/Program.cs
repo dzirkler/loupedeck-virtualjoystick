@@ -68,7 +68,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             UInt32 buttonId = 1;
 
             // Display Buttons
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Game Info",
                 FullName = "Game Started",
@@ -80,7 +80,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.YesNo,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Game Info",
                 FullName = "Game Paused",
@@ -92,7 +92,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.YesNo,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Transmission",
                 FullName = "Selected Gear",
@@ -117,7 +117,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             //    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
             //    TelemetryItem = "TruckValues.CurrentValues.XXX"
             //});
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Brakes",
                 FullName = "Parking Brake",
@@ -129,7 +129,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Engine",
                 FullName = "Engine Start/Stop",
@@ -141,7 +141,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Cruise Control",
                 FullName = "Cruise Control On/Off",
@@ -153,7 +153,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Drivetrain",
                 FullName = "Axle Lift/Lower",
@@ -165,7 +165,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Drivetrain",
                 FullName = "Diff Lock",
@@ -177,7 +177,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Beacon",
@@ -189,7 +189,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Fog Lights",
@@ -201,7 +201,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Hazard Lights",
@@ -213,7 +213,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "High Beams",
@@ -225,7 +225,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.Buttons.Add(new ButtonConfiguration()
+            config.Items.Add(new ButtonConfiguration()
             {
                 GroupName = "Lights",
                 FullName = "Next Light Mode",
@@ -257,7 +257,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                     };
             foreach (var button in mommentButtons)
             {
-                config.Buttons.Add(new ButtonConfiguration()
+                config.Items.Add(new ButtonConfiguration()
                 {
                     SafeName = CreateSafeName(button),
                     GroupName = button.Item1,
@@ -278,7 +278,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             };
             foreach (var button in latchingButtons)
             {
-                config.Buttons.Add(new ButtonConfiguration()
+                config.Items.Add(new ButtonConfiguration()
                 {
                     SafeName = CreateSafeName(button),
                     FullName = button.Item2,
@@ -293,7 +293,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             }
 
             // Multi-Position Switches
-            //config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
+            //config.Items.Add(new MultiPositionSwitchConfiguration()
             //{
             //    SafeName = CreateSafeName("Transmission", "Drive Mode"),
             //    GroupName = "Transmission",
@@ -324,7 +324,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             //            },
             //    WrapAround = false
             //});
-            //config.MultiPositionSwitches.Add(new MultiPositionSwitchConfiguration()
+            //config.Items.Add(new MultiPositionSwitchConfiguration()
             //{
             //    SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
             //    GroupName = "Wipers",
@@ -363,7 +363,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             //});
 
             // Increase/Decrease Adjustments
-            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Cruise Control", "Cruise Control Adjust"),
                 GroupName = "Cruise Control",
@@ -376,7 +376,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Transmission", "Drive Mode Adjust"),
                 GroupName = "Transmission",
@@ -390,7 +390,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 IconTextFormatter = DisplayTextFormat.Formatter.Custom,
                 CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
             });
-            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Route Advisor", "Route Adviser Pages"),
                 GroupName = "Route Advisor",
@@ -402,7 +402,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Camera", "Camera Change"),
                 GroupName = "Camera",
@@ -414,7 +414,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
-            config.IncreaseDecreaseAdjustments.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
                 GroupName = "Wipers",
@@ -430,7 +430,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
 
 
             // Full Range Adjustments
-            config.FullRangeAdjustments.Add(new FullRangeAdjustmentConfiguration()
+            config.Items.Add(new FullRangeAdjustmentConfiguration()
             {
                 SafeName = CreateSafeName("View", "Left/Right"),
                 GroupName = "View",
@@ -442,30 +442,12 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
 
-            // Save as Init Config
-            //Configuration = config;
+            string configStr = config.GenerateConfigurationText();
+            return configStr;
 
-            var serializer = new SerializerBuilder()
-                .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull)
-                .WithNamingConvention(CamelCaseNamingConvention.Instance)
-                .Build();
-            var stringResult = serializer.Serialize(config);
-
-            return stringResult;
-
-        }
-
-        private static String CreateSafeName(Tuple<String, String, String, String> button)
-        {
-            return CreateSafeName(button.Item1, button.Item2);
         }
 
         private static String CreateSafeName(Tuple<String, String, String> button)
-        {
-            return CreateSafeName(button.Item1, button.Item2);
-        }
-
-        private static String CreateSafeName(Tuple<String, String> button)
         {
             return CreateSafeName(button.Item1, button.Item2);
         }

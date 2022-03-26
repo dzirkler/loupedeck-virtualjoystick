@@ -58,8 +58,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
                     File.WriteAllText(filePath, EmbeddedResources.ReadTextFile("DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TruckingSimConfig.yml"));
                 }
 
-                //DrivingSimPluginConfiguration.CurrentConfiguration
-
                 TruckingSimPlugin.Configuration = (DrivingSimPluginConfiguration)File.ReadAllText(filePath).GenerateConfigurationFromString();
             }
         }

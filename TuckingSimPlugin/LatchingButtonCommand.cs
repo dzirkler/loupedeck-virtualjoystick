@@ -19,43 +19,49 @@
         {
             var resolver = new Resolver();
 
-            foreach (var button in TruckingSimPlugin.Configuration.Buttons
-                .Where(b => b.Style == Common.Configuration.ButtonConfiguration.ButtonStyle.LatchingButton))
-            {
-                // Add a Moment Button
-                this.AddParameter(
-                    button.SafeName,
-                    button.FullName,
-                    button.GroupName,
-                    button.Style.ToString(),
-                    LoupedeckOperatingSystem.Win);
+            TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i is ButtonConfiguration)
+                .Cast<ButtonConfiguration>()
+                .Where(i => i.Style == ButtonConfiguration.ButtonStyle.LatchingButton)
+                .ToList()
+                .ForEach(item =>
+                {
+                    // Add a Display Button
+                    this.AddParameter(
+                        item.SafeName,
+                        item.FullName,
+                        item.GroupName,
+                        "Display",
+                        LoupedeckOperatingSystem.Win);
 
-                Telemetry.Add(button.SafeName, button.DefaultValue);
+                    // Seed Storage
+                    Telemetry.Add(item.SafeName, false);
 
-                // Skip adding Telemetry Subscriber if there's no Telemetry Item
-                if (button.TelemetryItem == null) continue;
-
-                TruckingSimPlugin.Telemetry
-                    .Select(data => {
-                        return resolver.ResolveSafe(data, button.TelemetryItem);
-                    })
-                    .DistinctUntilChanged()
-                    .Subscribe(itemValue => {
-                        this.Telemetry[button.SafeName] = itemValue;
-                        this.ActionImageChanged(button.SafeName);
-                    });
-            }
+                    // Wire Telemetry Watcher
+                    TruckingSimPlugin.Telemetry
+                        .Select(data =>
+                        {
+                            return resolver.ResolveSafe(data, item.TelemetryItem);
+                        })
+                        .DistinctUntilChanged()
+                        .Subscribe(itemValue =>
+                        {
+                            this.Telemetry[item.SafeName] = itemValue;
+                            this.ActionImageChanged(item.SafeName);
+                        });
+                });
         }
 
         protected override void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var buttons = TruckingSimPlugin.Configuration.Buttons;
-            var button = buttons.Where(b => b.SafeName == actionParameter).First();
+            var item = GetConfigItem(actionParameter);
 
             Boolean state = false;
 
-            if (button.TelemetryItem == null)
+            if (item.TelemetryItem == null)
             {
                 // Only explictly Toggle state if we're not relying on Telemetry 
 
@@ -72,9 +78,8 @@
                 }
             }
 
-
             // Set Virtual Joystick Button
-            SetButtonState(joyId, button.ButtonId, state);
+            SetButtonState(joyId, item.ButtonId, state);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -92,9 +97,14 @@
             return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
 
-        private IConfigurationItem GetConfigItem(String safeName)
+        private ButtonConfiguration GetConfigItem(String safeName)
         {
-            return TruckingSimPlugin.Configuration.Buttons.Where(i => i.SafeName == safeName).First();
+            return TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(b => b.SafeName == safeName)
+                .Cast<ButtonConfiguration>()
+                .First();
         }
 
     }

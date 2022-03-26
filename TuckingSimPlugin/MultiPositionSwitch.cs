@@ -15,33 +15,35 @@
 
         public MultiPositionSwitch() : base(true)
         {
+            TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i is MultiPositionSwitchConfiguration)
+                .Cast<MultiPositionSwitchConfiguration>()
+                .ToList()
+                .ForEach(item =>
+                {
+                    this.AddParameter(
+                        item.SafeName,
+                        item.FullName,
+                        item.GroupName,
+                        "Multi-Position Switch",
+                        LoupedeckOperatingSystem.Win);
 
-            foreach (var mpSwitch in TruckingSimPlugin.Configuration.MultiPositionSwitches)
-            {
-                // Add a Dial
-                this.AddParameter(
-                    mpSwitch.SafeName,
-                    mpSwitch.FullName,
-                    mpSwitch.GroupName,
-                    "Multi-Position Switch",
-                    LoupedeckOperatingSystem.Win);
-
-                Telemetry.Add(mpSwitch.SafeName, mpSwitch.DefaultValue);
-            }
-
+                    Telemetry.Add(item.SafeName, item.DefaultValue);
+                });
         }
 
         protected override async void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var mpSwitches = TruckingSimPlugin.Configuration.MultiPositionSwitches;
-            var mpSwitch = mpSwitches.Where(d => d.SafeName == actionParameter).First();
-            
+            var item = GetConfigItem(actionParameter);
+
             // Reset to default value on press
-            Telemetry[actionParameter] = mpSwitch.DefaultValue;
+            Telemetry[actionParameter] = item.DefaultValue;
 
             //Set vJoy State
-            foreach (var position in mpSwitch.PositionValues)
+            foreach (var position in item.PositionValues)
             {
                 if (position.ButtonId != UInt32.MaxValue)
                     SetButtonState(joyId, position.ButtonId, Telemetry[actionParameter] == position.PositionId);
@@ -54,20 +56,19 @@
         protected override void ApplyAdjustment(String actionParameter, Int32 ticks)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
-            var mpSwitches = TruckingSimPlugin.Configuration.MultiPositionSwitches;
-            var mpSwitch = mpSwitches.Where(d => d.SafeName == actionParameter).First();
+            var item = GetConfigItem(actionParameter);
 
             // Increment
             var newValue = Telemetry[actionParameter];
             newValue += ticks;
-            if (newValue > mpSwitch.Positions)
-                newValue = mpSwitch.WrapAround ? 1 : mpSwitch.Positions;
+            if (newValue > item.Positions)
+                newValue = item.WrapAround ? 1 : item.Positions;
             if (newValue < 1)
-                newValue = mpSwitch.WrapAround ? mpSwitch.Positions : 1;
+                newValue = item.WrapAround ? item.Positions : 1;
             Telemetry[actionParameter] = newValue;
 
             //Set vJoy State
-            foreach (var position in mpSwitch.PositionValues)
+            foreach (var position in item.PositionValues)
             {
                 if (position.ButtonId != UInt32.MaxValue)
                     SetButtonState(joyId, position.ButtonId, Telemetry[actionParameter] == position.PositionId);
@@ -89,9 +90,14 @@
             return actionParameter.GetIconImage(GetConfigItem(actionParameter).FormatIconText(Telemetry[actionParameter]), Telemetry[actionParameter]);
         }
 
-        private IConfigurationItem GetConfigItem(String safeName)
+        private MultiPositionSwitchConfiguration GetConfigItem(String safeName)
         {
-            return TruckingSimPlugin.Configuration.MultiPositionSwitches.Where(i => i.SafeName == safeName).First();
+            return TruckingSimPlugin
+                .Configuration
+                .Items
+                .Where(i => i.SafeName == safeName)
+                .Cast<MultiPositionSwitchConfiguration>()
+                .FirstOrDefault();
         }
 
     }
