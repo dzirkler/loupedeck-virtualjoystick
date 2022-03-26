@@ -75,8 +75,10 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
-            var button = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Find(a => a.SafeName == actionParameter);
-            return button == null ? "actionParameter" : button.DisplayText;
+            if (actionParameter == null || actionParameter == "") return null;
+
+            var adjuster = TruckingSimPlugin.Configuration.IncreaseDecreaseAdjustments.Find(b => b.SafeName == actionParameter);
+            return adjuster == null ? "actionParameter" : String.Format(adjuster.DisplayText, Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)

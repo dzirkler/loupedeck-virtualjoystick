@@ -207,10 +207,24 @@
     <EmbeddedResource Include="Icons\CruiseControl-CruiseControlOnOff-On.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icons\Drivetrain-AxleLiftLower-Off.png" />
-    <EmbeddedResource Include="Icons\Drivetrain-AxleLiftLower-On.png" />
+    <EmbeddedResource Include="Icons\Camera-CameraChange-Off.png" />
+    <EmbeddedResource Include="Icons\Camera-CameraChange-On.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Icons\RouteAdvisor-RouteAdviserPages-Off.png" />
+    <EmbeddedResource Include="Icons\RouteAdvisor-RouteAdviserPages-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Transmission-Drive-Off.png" />
+    <EmbeddedResource Include="Icons\Transmission-Drive-On.png" />
+    <EmbeddedResource Include="Icons\Transmission-Neutral-Off.png" />
+    <EmbeddedResource Include="Icons\Transmission-Neutral-On.png" />
+    <EmbeddedResource Include="Icons\Transmission-Reverse-Off.png" />
+    <EmbeddedResource Include="Icons\Transmission-Reverse-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Drivetrain-AxleLiftLower-Off.png" />
+    <EmbeddedResource Include="Icons\Drivetrain-AxleLiftLower-On.png" />
     <EmbeddedResource Include="Icons\Drivetrain-DiffLock-Off.png" />
     <EmbeddedResource Include="Icons\Drivetrain-DiffLock-On.png" />
   </ItemGroup>

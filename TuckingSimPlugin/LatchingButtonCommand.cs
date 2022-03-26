@@ -81,12 +81,10 @@
 
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize)
         {
-            if (actionParameter == null) return null;
+            if (actionParameter == null || actionParameter == "") return null;
 
-            var button = TruckingSimPlugin.Configuration.Buttons.Find(mb => mb.SafeName == actionParameter);
-            var onOff = (Boolean)Telemetry[actionParameter] ? "on" : "off";
-
-            return button == null ? "actionParameter" : String.Format(button.DisplayText, onOff);
+            var button = TruckingSimPlugin.Configuration.Buttons.Find(b => b.SafeName == actionParameter);
+            return button == null ? "actionParameter" : String.Format(button.DisplayText, Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)

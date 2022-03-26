@@ -10,7 +10,7 @@
 
     public class FullRangeAdjustment : FullRangeAdjustmentBase
     {
-        private Dictionary<String, Int32> AdjustmentValues = new Dictionary<String, Int32>();
+        private Dictionary<String, Int32> Telemetry = new Dictionary<String, Int32>();
 
         public FullRangeAdjustment() : base(true)
         {
@@ -25,7 +25,7 @@
                     LoupedeckOperatingSystem.Win);
 
                 // Set Current Val
-                AdjustmentValues.Add(adjuster.SafeName, adjuster.DefaultValue);
+                Telemetry.Add(adjuster.SafeName, adjuster.DefaultValue);
             }
         }
 
@@ -36,10 +36,10 @@
             var adjuster = adjusters.Find(d => d.SafeName == actionParameter);
             
             // Reset to default value on press
-            AdjustmentValues[actionParameter] = adjuster.DefaultValue;
+            Telemetry[actionParameter] = adjuster.DefaultValue;
 
             // Set Axis
-            SetAxis(joyId, adjuster.Axis, AdjustmentValues[actionParameter]);
+            SetAxis(joyId, adjuster.Axis, Telemetry[actionParameter]);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -52,16 +52,16 @@
             var adjuster = adjusters.Find(d => d.SafeName == actionParameter);
 
             // Increment
-            var newValue = AdjustmentValues[actionParameter];
+            var newValue = Telemetry[actionParameter];
             newValue += TruckingSimPlugin.Configuration.JoystickAxisIncrementValue * ticks;
             if (newValue > TruckingSimPlugin.Configuration.JoystickAxisMaxValue)
                 newValue = TruckingSimPlugin.Configuration.JoystickAxisMaxValue;
             if (newValue < TruckingSimPlugin.Configuration.JoystickAxisMinValue)
                 newValue = TruckingSimPlugin.Configuration.JoystickAxisMinValue;
-            AdjustmentValues[actionParameter] = newValue;
+            Telemetry[actionParameter] = newValue;
 
             // Set Axis
-            SetAxis(joyId, adjuster.Axis, AdjustmentValues[actionParameter]);
+            SetAxis(joyId, adjuster.Axis, Telemetry[actionParameter]);
 
             // Update Text/Image
             this.ActionImageChanged(actionParameter);
@@ -80,7 +80,7 @@
                 return "actionParameter";
             }
 
-            var currVal = AdjustmentValues[actionParameter];
+            var currVal = Telemetry[actionParameter];
             return String.Format(adjuster.DisplayText, currVal);
         }
 
