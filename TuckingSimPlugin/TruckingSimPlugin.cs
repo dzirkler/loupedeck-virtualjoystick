@@ -45,7 +45,6 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
                                 );
                             })
                             .DistinctUntilChanged();
-                            //.DistinctUntilChanged(e => e.Value);
 
         }
 
