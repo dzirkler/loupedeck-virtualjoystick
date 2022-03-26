@@ -16,7 +16,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-	<LoupedeckInstallation>C:\Program Files (x86)\Loupedeck\Loupedeck2\</LoupedeckInstallation>
+    <LoupedeckInstallation>C:\Program Files (x86)\Loupedeck\Loupedeck2\</LoupedeckInstallation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-	<PostBuildEvent>
+    <PostBuildEvent>
 		cd $(OutputPath)
 		dir /s /b
 		del *.xml
@@ -156,7 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="DefaultProfile30win.lp4" />
+    <None Include="DefaultProfiles\AmericanTruckSimulator.lp4" />
     <None Include="LoupedeckPackage.yaml" />
     <EmbeddedResource Include="TruckingSimConfig.yml" />
     <None Include="packages.config" />
