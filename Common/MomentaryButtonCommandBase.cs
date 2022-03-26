@@ -23,7 +23,7 @@
             // Set button on for duration, then back off
             Observable
                 .Return(VirtualJoystick.SendButtonPress(vjoy, vbutton, true))
-                .Delay(new TimeSpan(0, 0, 0, 0, duration))
+                .Delay(TimeSpan.FromMilliseconds(duration))
                 .Subscribe(_ => VirtualJoystick.SendButtonPress(vjoy, vbutton, false));
         }
 
