@@ -23,7 +23,9 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
         /// </summary>
         /// <param name="screen">Only prints to the console, does not save to file</param>
         /// <param name="file"></param>
-        static void Main(Boolean screen = false, String file = "")
+        /// <param name="app"></param>
+        static void Main(Boolean screen = false, String file = "", String app = "truck")
+
         {
             Spectre.Console.AnsiConsole.Write(
                 new FigletText("ConfigGenerator")
@@ -37,13 +39,20 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             {
                 AnsiConsole.Write(whiteRule);
                 AnsiConsole.WriteLine();
-                AnsiConsole.WriteLine(CreateConfig());
+                if (app == "truck")
+                    AnsiConsole.WriteLine(CreateTruckingSimConfig());
+                else if (app == "beam")
+                    AnsiConsole.WriteLine(CreateBeamNgDriveSimConfig());
                 AnsiConsole.Write(whiteRule);
                 AnsiConsole.WriteLine();
             }
             else
             {
-                File.WriteAllText(file, CreateConfig());
+                if (app == "truck")
+                    File.WriteAllText(file, CreateTruckingSimConfig());
+                else if (app == "beam")
+                    File.WriteAllText(file, CreateBeamNgDriveSimConfig());
+
 
                 AnsiConsole.MarkupLine("[bold]Config written to:[/]");
                 var path = new TextPath(file)
@@ -53,7 +62,216 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             }
         }
 
-        private static String CreateConfig()
+        private static String CreateBeamNgDriveSimConfig()
+        {
+
+            // Initialize Config File
+            Debug.WriteLine("Initialize Config File");
+            var config = new DrivingSimPluginConfiguration();
+
+            // vJoystick ID
+            config.vJoyID = 1;
+
+
+            // Start Counting Buttons at 1
+            UInt32 buttonId = 1;
+
+
+            // Momentary Buttons
+            //config.Buttons.Add(new ButtonConfiguration()
+            //{
+            //    GroupName = "XXX",
+            //    FullName = "XXX",
+            //    SafeName = CreateSafeName("XXX", "XXX"),
+            //    DisplayText = "XXX On:\n {0}",
+            //    ButtonId = buttonId++,
+            //    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
+            //    TelemetryItem = "TruckValues.CurrentValues.XXX"
+            //});
+
+            var mommentButtons = new List<Tuple<String, String>>
+                    {
+                        new Tuple<String, String>("Brakes", "Parking Brake"),
+                        new Tuple<String, String>("Lights", "Headlights"),
+                        new Tuple<String, String>("Lights", "High Beams"),
+                        new Tuple<String, String>("Lights", "Hazard Lights"),
+                        new Tuple<String, String>("Lights", "Fog Lights"),
+                        new Tuple<String, String>("Lights", "Lightbar"),
+                        new Tuple<String, String>("Cruise Control", "Cruise Control Disable"),
+                        new Tuple<String, String>("Cruise Control", "Cruise Control Set"),
+                        new Tuple<String, String>("Cruise Control", "Cruise Control Reset"),
+                        new Tuple<String, String>("Cruise Control", "Cruise Control Resume"),
+                        new Tuple<String, String>("Drivetrain", "Diff Lock"),
+                        new Tuple<String, String>("Drivetrain", "4WD"),
+                        new Tuple<String, String>("Engine", "Engine Start/Stop"),
+                        new Tuple<String, String>("Horns", "Horn"),
+                        new Tuple<String, String>("Misc", "Reset Vehicle"),
+                        new Tuple<String, String>("Trailer", "Toggle Couplers"),
+                        new Tuple<String, String>("Vehicle", "Explode"),
+                    };
+            foreach (var button in mommentButtons)
+            {
+                config.Items.Add(new ButtonConfiguration()
+                {
+                    SafeName = CreateSafeName(button),
+                    GroupName = button.Item1,
+                    FullName = button.Item2,
+                    ButtonId = buttonId++,
+                    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
+                    CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                    IconTextFormatter = DisplayTextFormat.Formatter.FullName,
+                });
+            }
+
+            // Latching Buttons
+            var latchingButtons = new List<Tuple<String, String, String>>
+            {
+                new Tuple<String, String, String>("Lights", "High Beams (Latching)", "High Beams"),
+                //new Tuple<String, String, String>("Brakes", "Parking Brake", "Parking\nBrake\n({0})"),
+                //new Tuple<String, String, String>("Engine", "Engine Start/Stop", "Engine\nStart/Stop\n({0})"),
+            };
+            foreach (var button in latchingButtons)
+            {
+                config.Items.Add(new ButtonConfiguration()
+                {
+                    SafeName = CreateSafeName(button),
+                    FullName = button.Item2,
+                    GroupName = button.Item1,
+                    TextFormatString = button.Item3,
+                    ButtonId = buttonId++,
+                    Style = ButtonConfiguration.ButtonStyle.LatchingButton,
+                    DefaultValue = false,
+                    CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                    IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
+                });
+            }
+
+            // Multi-Position Switches
+            //config.Items.Add(new MultiPositionSwitchConfiguration()
+            //{
+            //    SafeName = CreateSafeName("Transmission", "Drive Mode"),
+            //    GroupName = "Transmission",
+            //    FullName = "Drive Mode",
+            //    DisplayText = "Auto\n{0}",
+            //    DefaultValue = 2,
+            //    Positions = 3,
+            //    PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
+            //            {
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 1,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "R"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 2,
+            //                    ButtonId = UInt32.MaxValue,
+            //                    DisplayName = "N"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 3,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "D"
+            //                }
+            //            },
+            //    WrapAround = false
+            //});
+            //config.Items.Add(new MultiPositionSwitchConfiguration()
+            //{
+            //    SafeName = CreateSafeName("Wipers", "Wiper Speed Adjust"),
+            //    GroupName = "Wipers",
+            //    FullName = "Wiper Speed Adjust",
+            //    DisplayText = "Wipers\n{0}",
+            //    DefaultValue = 1,
+            //    Positions = 4,
+            //    PositionValues = new List<MultiPositionSwitchConfiguration.MultiPositionValue>()
+            //            {
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 1,
+            //                    ButtonId = UInt32.MaxValue,
+            //                    DisplayName = "Off"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 2,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Int"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 3,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Lo"
+            //                },
+            //                new MultiPositionSwitchConfiguration.MultiPositionValue()
+            //                {
+            //                    PositionId = 4,
+            //                    ButtonId = buttonId++,
+            //                    DisplayName = "Hi"
+            //                }
+            //            },
+            //    WrapAround = false
+            //});
+
+            // Increase/Decrease Adjustments
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Cruise Control", "Cruise Control Adjust"),
+                GroupName = "Cruise Control",
+                FullName = "Cruise Control Adjust",
+                TextFormatString = "Cruise Control",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
+            });
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Transmission", "Drive Mode Adjust"),
+                GroupName = "Transmission",
+                FullName = "Drive Mode Adjust",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.FullName,
+            });
+            config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("Camera", "Camera Change"),
+                GroupName = "Camera",
+                FullName = "Camera Change",
+                TextFormatString = "Camera Change",
+                IncreaseButtonId = buttonId++,
+                DecreaseButtonId = buttonId++,
+                ResetButtonId = buttonId++,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
+            });
+
+
+            // Full Range Adjustments
+            config.Items.Add(new FullRangeAdjustmentConfiguration()
+            {
+                SafeName = CreateSafeName("View", "Left/Right"),
+                GroupName = "View",
+                FullName = "Left/Right",
+                Axis = FullRangeAdjustmentConfiguration.JoystickAxis.Rx,
+                DefaultValue = (config.JoystickAxisMaxValue - config.JoystickAxisMinValue) / 2,
+                CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
+                IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
+            });
+
+            string configStr = config.GenerateConfigurationText();
+            return configStr;
+
+        }
+
+        private static String CreateTruckingSimConfig()
         {
 
             // Initialize Config File
@@ -448,6 +666,11 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
         }
 
         private static String CreateSafeName(Tuple<String, String, String> button)
+        {
+            return CreateSafeName(button.Item1, button.Item2);
+        }
+
+        private static String CreateSafeName(Tuple<String, String> button)
         {
             return CreateSafeName(button.Item1, button.Item2);
         }

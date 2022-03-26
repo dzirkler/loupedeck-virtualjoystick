@@ -1,0 +1,207 @@
+!DrivingSim
+vJoyID: 1
+joystickAxisMinValue: 0
+joystickAxisMaxValue: 32767
+joystickAxisIncrementValue: 100
+momentaryButtonDepressTime: 100
+items:
+- !Button
+  buttonId: 1
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Brakes-ParkingBrake
+  groupName: Brakes
+  fullName: Parking Brake
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 2
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-Headlights
+  groupName: Lights
+  fullName: Headlights
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 3
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-HighBeams
+  groupName: Lights
+  fullName: High Beams
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 4
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-HazardLights
+  groupName: Lights
+  fullName: Hazard Lights
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 5
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-FogLights
+  groupName: Lights
+  fullName: Fog Lights
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 6
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-Lightbar
+  groupName: Lights
+  fullName: Lightbar
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 7
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlDisable
+  groupName: Cruise Control
+  fullName: Cruise Control Disable
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 8
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlSet
+  groupName: Cruise Control
+  fullName: Cruise Control Set
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 9
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlReset
+  groupName: Cruise Control
+  fullName: Cruise Control Reset
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 10
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlResume
+  groupName: Cruise Control
+  fullName: Cruise Control Resume
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 11
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Drivetrain-DiffLock
+  groupName: Drivetrain
+  fullName: Diff Lock
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 12
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Drivetrain-4WD
+  groupName: Drivetrain
+  fullName: 4WD
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 13
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Engine-EngineStartStop
+  groupName: Engine
+  fullName: Engine Start/Stop
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 14
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Horns-Horn
+  groupName: Horns
+  fullName: Horn
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 15
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Misc-ResetVehicle
+  groupName: Misc
+  fullName: Reset Vehicle
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 16
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Trailer-ToggleCouplers
+  groupName: Trailer
+  fullName: Toggle Couplers
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 17
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Vehicle-Explode
+  groupName: Vehicle
+  fullName: Explode
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !Button
+  buttonId: 18
+  style: LatchingButton
+  defaultValue: false
+  safeName: Lights-HighBeamsLatching
+  groupName: Lights
+  fullName: High Beams (Latching)
+  textFormatString: High Beams
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
+- !IncreaseDecreaseAdjustment
+  increaseButtonId: 19
+  decreaseButtonId: 20
+  resetButtonId: 21
+  safeName: CruiseControl-CruiseControlAdjust
+  groupName: Cruise Control
+  fullName: Cruise Control Adjust
+  textFormatString: Cruise Control
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
+- !IncreaseDecreaseAdjustment
+  increaseButtonId: 22
+  decreaseButtonId: 23
+  resetButtonId: 24
+  safeName: Transmission-DriveModeAdjust
+  groupName: Transmission
+  fullName: Drive Mode Adjust
+  commandTextFormatter: FullName
+  iconTextFormatter: FullName
+- !IncreaseDecreaseAdjustment
+  increaseButtonId: 25
+  decreaseButtonId: 26
+  resetButtonId: 27
+  safeName: Camera-CameraChange
+  groupName: Camera
+  fullName: Camera Change
+  textFormatString: Camera Change
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
+- !FullRangeAdjustment
+  axis: Rx
+  defaultValue: 16383
+  safeName: View-LeftRight
+  groupName: View
+  fullName: Left/Right
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
