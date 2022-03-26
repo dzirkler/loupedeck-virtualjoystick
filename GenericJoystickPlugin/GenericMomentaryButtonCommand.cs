@@ -62,7 +62,21 @@
             var vjoy = UInt32.Parse(config[0]);
             var vbutton = UInt32.Parse(config[1]);
 
-            return $"Virtual Joystick {vjoy} Button {vbutton} pushed.";
+            return $"Joystick {vjoy} Button {vbutton}";
         }
+
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            var iconFile = EmbeddedResources.FindFile("Joystick-On.png");
+            // Text Only
+            using (var bitmapBuilder = new BitmapBuilder(90, 90))
+            {
+                bitmapBuilder.SetBackgroundImage(EmbeddedResources.ReadImage(iconFile));
+                bitmapBuilder.DrawText(GetCommandDisplayName(actionParameter, imageSize), 0, 40, 90, 45);
+
+                return bitmapBuilder.ToImage();
+            }
+        }
+
     }
 }

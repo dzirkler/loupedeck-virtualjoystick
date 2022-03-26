@@ -74,8 +74,15 @@
             var config = actionParameter.Split("|".ToCharArray());
             var vjoy = UInt32.Parse(config[0]);
             var vbutton = UInt32.Parse(config[1]);
-            Boolean state = false;
 
+            return $"Joystick {vjoy} Button {vbutton}";
+        }
+
+        protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
+        {
+            if (actionParameter == null || actionParameter == "") return null;
+
+            Boolean state = false;
             if (ButtonStates.ContainsKey(actionParameter))
             {
                 // Not sure why this is flipped, but its very consistent
@@ -85,9 +92,16 @@
             {
                 ButtonStates.Add(actionParameter, false);
             }
+            var onOff = state ? "On" : "Off";
+            var iconFile = EmbeddedResources.FindFile($"Joystick-{onOff}.png");
 
-            var onOff = state ? "on" : "off";
-            return $"Virtual Joystick {vjoy} Button {vbutton} set to {onOff}.";
+            using (var bitmapBuilder = new BitmapBuilder(90, 90))
+            {
+                bitmapBuilder.SetBackgroundImage(EmbeddedResources.ReadImage(iconFile));
+                bitmapBuilder.DrawText(GetCommandDisplayName(actionParameter, imageSize), 0, 40, 90, 45);
+
+                return bitmapBuilder.ToImage();
+            }
         }
     }
 }
