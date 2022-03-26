@@ -7,10 +7,12 @@ buttons:
 - buttonId: 0
   style: DisplayButton
   defaultValue: false
-  safeName: GameInfo-GameActive
+  safeName: GameInfo-GameStarted
   groupName: Game Info
-  fullName: Game Active
-  displayText: 'Game Active: {0}'
+  fullName: Game Started
+  displayText: >-
+    Game Running:
+     {0}
   telemetryItem: SdkActive
 - buttonId: 0
   style: DisplayButton
@@ -18,113 +20,51 @@ buttons:
   safeName: GameInfo-GamePaused
   groupName: Game Info
   fullName: Game Paused
-  displayText: 'Game Paused: {0}'
+  displayText: >-
+    Game Paused:
+     {0}
   telemetryItem: Paused
 - buttonId: 0
   style: DisplayButton
   defaultValue: false
   safeName: Engine-EngineStatus
-  groupName: Engine
-  fullName: Engine Status
-  displayText: 'Engine On: {0}'
-  telemetryItem: TruckValues.CurrentValues.EngineEnabled
+  groupName: Transmission
+  fullName: Selected Gear
+  displayText: >-
+    Auto:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
 - buttonId: 1
   style: MomentaryButton
   defaultValue: false
   safeName: Brakes-ParkingBrake
   groupName: Brakes
   fullName: Parking Brake
-  displayText: Parking Brake
-  telemetryItem: 
+  displayText: >-
+    Parking Brake
+     {0}
+  telemetryItem: TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake
 - buttonId: 2
   style: MomentaryButton
   defaultValue: false
-  safeName: Camera-Camera1
-  groupName: Camera
-  fullName: Camera 1
-  displayText: Camera 1
-  telemetryItem: 
+  safeName: Engine-EngineStartStop
+  groupName: Engine
+  fullName: Engine Start/Stop
+  displayText: >-
+    Engine On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.EngineEnabled
 - buttonId: 3
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera2
-  groupName: Camera
-  fullName: Camera 2
-  displayText: Camera 2
-  telemetryItem: 
-- buttonId: 4
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera3
-  groupName: Camera
-  fullName: Camera 3
-  displayText: Camera 3
-  telemetryItem: 
-- buttonId: 5
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera4
-  groupName: Camera
-  fullName: Camera 4
-  displayText: Camera 4
-  telemetryItem: 
-- buttonId: 6
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera5
-  groupName: Camera
-  fullName: Camera 5
-  displayText: Camera 5
-  telemetryItem: 
-- buttonId: 7
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera6
-  groupName: Camera
-  fullName: Camera 6
-  displayText: Camera 6
-  telemetryItem: 
-- buttonId: 8
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera7
-  groupName: Camera
-  fullName: Camera 7
-  displayText: Camera 7
-  telemetryItem: 
-- buttonId: 9
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-Camera8
-  groupName: Camera
-  fullName: Camera 8
-  displayText: Camera 8
-  telemetryItem: 
-- buttonId: 10
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Camera-NextCamera
-  groupName: Camera
-  fullName: Next Camera
-  displayText: Next Camera
-  telemetryItem: 
-- buttonId: 11
-  style: MomentaryButton
-  defaultValue: false
-  safeName: CruiseControl-CruiseControlResume
-  groupName: Cruise Control
-  fullName: Cruise Control Resume
-  displayText: Cruise Control Resume
-  telemetryItem: 
-- buttonId: 12
   style: MomentaryButton
   defaultValue: false
   safeName: CruiseControl-CruiseControlOnOff
   groupName: Cruise Control
-  fullName: Cruise Control On/Off
-  displayText: Cruise Control On/Off
-  telemetryItem: 
-- buttonId: 13
+  fullName: TruckValues.CurrentValues.DashboardValues.CruiseControl
+  displayText: >-
+    Cruise Control On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
+- buttonId: 4
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-AxleLiftLower
@@ -133,27 +73,150 @@ buttons:
   displayText: >-
     Axle
 
-    Lift/
-
-    Lower
-  telemetryItem: 
-- buttonId: 14
+    Lift On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LiftAxleIndicator
+- buttonId: 5
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-DiffLock
   groupName: Drivetrain
   fullName: Diff Lock
-  displayText: Diff Lock
+  displayText: >-
+    Diff Lock On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.DifferentialLock
+- buttonId: 6
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-Beacon
+  groupName: Lights
+  fullName: Beacon
+  displayText: >-
+    Beacon On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LightsValues.Beacon
+- buttonId: 7
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-FogLights
+  groupName: Lights
+  fullName: Fog Lights
+  displayText: >-
+    Fog Lights On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LightsValues.AuxFront
+- buttonId: 8
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-HazardLights
+  groupName: Lights
+  fullName: Hazard Lights
+  displayText: >-
+    Hazard Lights On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LightsValues.HazardWarningLights
+- buttonId: 9
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-HighBeams
+  groupName: Lights
+  fullName: High Beams
+  displayText: >-
+    High Beams On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamHigh
+- buttonId: 10
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Lights-NextLightMode
+  groupName: Lights
+  fullName: Next Light Mode
+  displayText: >-
+    Headlights On:
+     {0}
+  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamLow
+- buttonId: 11
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera1
+  groupName: Camera
+  fullName: Camera 1
+  displayText: Camera 1
+  telemetryItem: 
+- buttonId: 12
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera2
+  groupName: Camera
+  fullName: Camera 2
+  displayText: Camera 2
+  telemetryItem: 
+- buttonId: 13
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera3
+  groupName: Camera
+  fullName: Camera 3
+  displayText: Camera 3
+  telemetryItem: 
+- buttonId: 14
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera4
+  groupName: Camera
+  fullName: Camera 4
+  displayText: Camera 4
   telemetryItem: 
 - buttonId: 15
   style: MomentaryButton
   defaultValue: false
-  safeName: Engine-EngineStartStop
-  groupName: Engine
-  fullName: Engine Start/Stop
-  displayText: Start/Stop
+  safeName: Camera-Camera5
+  groupName: Camera
+  fullName: Camera 5
+  displayText: Camera 5
   telemetryItem: 
 - buttonId: 16
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera6
+  groupName: Camera
+  fullName: Camera 6
+  displayText: Camera 6
+  telemetryItem: 
+- buttonId: 17
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera7
+  groupName: Camera
+  fullName: Camera 7
+  displayText: Camera 7
+  telemetryItem: 
+- buttonId: 18
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-Camera8
+  groupName: Camera
+  fullName: Camera 8
+  displayText: Camera 8
+  telemetryItem: 
+- buttonId: 19
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Camera-NextCamera
+  groupName: Camera
+  fullName: Next Camera
+  displayText: Next Camera
+  telemetryItem: 
+- buttonId: 20
+  style: MomentaryButton
+  defaultValue: false
+  safeName: CruiseControl-CruiseControlResume
+  groupName: Cruise Control
+  fullName: Cruise Control Resume
+  displayText: Cruise Control Resume
+  telemetryItem: 
+- buttonId: 21
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-AirHorn
@@ -161,53 +224,13 @@ buttons:
   fullName: Air Horn
   displayText: Air Horn
   telemetryItem: 
-- buttonId: 17
+- buttonId: 22
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-Horn
   groupName: Horns
   fullName: Horn
   displayText: Horn
-  telemetryItem: 
-- buttonId: 18
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Lights-Beacon
-  groupName: Lights
-  fullName: Beacon
-  displayText: Beacon
-  telemetryItem: 
-- buttonId: 19
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Lights-FogLights
-  groupName: Lights
-  fullName: Fog Lights
-  displayText: Fog Lights
-  telemetryItem: 
-- buttonId: 20
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Lights-HazardLights
-  groupName: Lights
-  fullName: Hazard Lights
-  displayText: Hazard Lights
-  telemetryItem: 
-- buttonId: 21
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Lights-HighBeams
-  groupName: Lights
-  fullName: High Beams
-  displayText: High Beams
-  telemetryItem: 
-- buttonId: 22
-  style: MomentaryButton
-  defaultValue: false
-  safeName: Lights-NextLightMode
-  groupName: Lights
-  fullName: Next Light Mode
-  displayText: Next Light Mode
   telemetryItem: 
 - buttonId: 23
   style: MomentaryButton
@@ -234,7 +257,7 @@ increaseDecreaseAdjustments:
   groupName: Cruise Control
   fullName: Cruise Control Adjust
   displayText: Cruise Control
-  telemetryItem: 
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
 - increaseButtonId: 28
   decreaseButtonId: 29
   resetButtonId: 30
@@ -266,9 +289,9 @@ increaseDecreaseAdjustments:
   groupName: Wipers
   fullName: Wiper Speed Adjust
   displayText: Wipers
-  telemetryItem: 
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.Wipers
 fullRangeAdjustments:
-- axis: X
+- axis: Rx
   defaultValue: 16383
   safeName: View-LeftRight
   groupName: View

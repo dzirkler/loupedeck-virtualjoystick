@@ -27,12 +27,17 @@
 
         private static BitmapImage GetBlankImage(String displayText)
         {
+            return GetBlankImage(displayText, "");
+        }
+
+        private static BitmapImage GetBlankImage(String displayText, String state)
+        {
             var iconFile = EmbeddedResources.FindFile("Blank.png");
             // Text Only
             using (var bitmapBuilder = new BitmapBuilder(80,80))
             {
                 bitmapBuilder.SetBackgroundImage(EmbeddedResources.ReadImage(iconFile));
-                bitmapBuilder.DrawText(displayText);
+                bitmapBuilder.DrawText(String.Format(displayText, state));
 
                 return bitmapBuilder.ToImage();
             }

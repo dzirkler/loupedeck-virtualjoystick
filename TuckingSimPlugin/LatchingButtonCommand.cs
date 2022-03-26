@@ -3,33 +3,50 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reactive.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using DesertSunSoftware.LoupedeckVirtualJoystick.Common;
     using Loupedeck;
+    using Pather.CSharp;
 
     public class LatchingButtonCommand : LatchingButtonCommandBase
     {
-        private Dictionary<String, Boolean> ButtonStates = new Dictionary<String, Boolean>();
+        private Dictionary<String, Object> Telemetry = new Dictionary<String, Object>();
 
         public LatchingButtonCommand() : base()
         {
-            foreach (var momentButton in TruckingSimPlugin.Configuration.Buttons
+            var resolver = new Resolver();
+
+            foreach (var button in TruckingSimPlugin.Configuration.Buttons
                 .Where(b => b.Style == Common.Configuration.ButtonConfiguration.ButtonStyle.LatchingButton))
             {
                 // Add a Moment Button
                 this.AddParameter(
-                    momentButton.SafeName,
-                    momentButton.FullName,
-                    momentButton.GroupName,
-                    "Momentary",
+                    button.SafeName,
+                    button.FullName,
+                    button.GroupName,
+                    button.Style.ToString(),
                     LoupedeckOperatingSystem.Win);
 
-                ButtonStates.Add(momentButton.SafeName, momentButton.DefaultValue);
+                Telemetry.Add(button.SafeName, button.DefaultValue);
+
+                // Skip adding Telemetry Subscriber if there's no Telemetry Item
+                if (button.TelemetryItem == null) continue;
+
+                TruckingSimPlugin.Telemetry
+                    .Select(data => {
+                        return resolver.ResolveSafe(data, button.TelemetryItem);
+                    })
+                    .DistinctUntilChanged()
+                    .Subscribe(itemValue => {
+                        this.Telemetry[button.SafeName] = itemValue;
+                        this.ActionImageChanged(button.SafeName);
+                    });
             }
         }
 
-        protected override async void RunCommand(String actionParameter)
+        protected override void RunCommand(String actionParameter)
         {
             var joyId = TruckingSimPlugin.Configuration.vJoyID;
             var buttons = TruckingSimPlugin.Configuration.Buttons;
@@ -37,17 +54,23 @@
 
             Boolean state = false;
 
-            if (ButtonStates.ContainsKey(actionParameter))
+            if (button.TelemetryItem == null)
             {
-                // Toggle State
-                state = !ButtonStates[actionParameter];
-                ButtonStates[actionParameter] = state;
+                // Only explictly Toggle state if we're not relying on Telemetry 
+
+                if (Telemetry.ContainsKey(actionParameter))
+                {
+                    // Toggle State
+                    state = !(Boolean)Telemetry[actionParameter];
+                    Telemetry[actionParameter] = state;
+                }
+                else
+                {
+                    Telemetry.Add(actionParameter, true);
+                    state = true;
+                }
             }
-            else
-            {
-                ButtonStates.Add(actionParameter, true);
-                state = true;
-            }
+
 
             // Set Virtual Joystick Button
             SetButtonState(joyId, button.ButtonId, state);
@@ -61,14 +84,14 @@
             if (actionParameter == null) return null;
 
             var button = TruckingSimPlugin.Configuration.Buttons.Find(mb => mb.SafeName == actionParameter);
-            var onOff = ButtonStates[actionParameter] ? "on" : "off";
+            var onOff = (Boolean)Telemetry[actionParameter] ? "on" : "off";
 
             return button == null ? "actionParameter" : String.Format(button.DisplayText, onOff);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
         {
-            var onOff = ButtonStates[actionParameter] ? "On" : "Off";
+            var onOff = (Boolean)Telemetry[actionParameter] ? "On" : "Off";
             return actionParameter.GetIconImage(GetCommandDisplayName(actionParameter, imageSize), onOff);
         }
 

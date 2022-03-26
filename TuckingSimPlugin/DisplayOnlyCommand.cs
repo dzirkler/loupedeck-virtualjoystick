@@ -15,13 +15,15 @@
 
     public class DisplayOnlyCommand : DisplayOnlyCommandBase
     {
-        private Dictionary<String, Object> ButtonStates = new Dictionary<String, Object>();
+        private Dictionary<String, Object> Telemetry = new Dictionary<String, Object>();
 
         //private bool SDKRunning = true;
         //private bool GamePaused = true;
 
         public DisplayOnlyCommand() : base()
         {
+            var resolver = new Resolver();
+
             foreach (var button in TruckingSimPlugin.Configuration.Buttons
                 .Where(b => b.Style == Common.Configuration.ButtonConfiguration.ButtonStyle.DisplayButton))
             {
@@ -34,18 +36,15 @@
                     LoupedeckOperatingSystem.Win);
 
                 // Seed Storage
-                ButtonStates.Add(button.SafeName, false);
+                Telemetry.Add(button.SafeName, false);
 
                 TruckingSimPlugin.Telemetry
                     .Select(data => {
-                        var resolver = new Resolver();
-                        var item = resolver.Resolve(data, button.TelemetryItem);
-                        return item;
-                        //return data.GetType().GetProperty(button.TelemetryItem).GetValue(data);
+                        return resolver.ResolveSafe(data, button.TelemetryItem);
                     })
                     .DistinctUntilChanged()
                     .Subscribe(itemValue => {
-                    this.ButtonStates[button.SafeName] = itemValue;
+                        this.Telemetry[button.SafeName] = itemValue;
                         this.ActionImageChanged(button.SafeName);
                     });
             }
@@ -61,7 +60,7 @@
             if (actionParameter == null || actionParameter == "") return null;
 
             var button = TruckingSimPlugin.Configuration.Buttons.Find(b => b.SafeName == actionParameter);
-            return button == null ? "actionParameter" : String.Format(button.DisplayText, ButtonStates[actionParameter]);
+            return button == null ? "actionParameter" : String.Format(button.DisplayText, Telemetry[actionParameter]);
         }
 
         protected override BitmapImage GetCommandImage(String actionParameter, PluginImageSize imageSize)
