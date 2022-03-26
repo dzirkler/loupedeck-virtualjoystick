@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericJoystickPlugin", "Ge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{65494ADC-BD08-4F91-A3D3-7BB514DAD7C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruckingSimPlugin", "TuckingSimPlugin\TruckingSimPlugin.csproj", "{E9733737-1BEC-44FF-9F24-D5CB1CBD83DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruckingSimPlugin", "TruckingSimPlugin\TruckingSimPlugin.csproj", "{E9733737-1BEC-44FF-9F24-D5CB1CBD83DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigGenerator", "ConfigGenerator\ConfigGenerator.csproj", "{53694856-8B01-43CC-AF85-64EE4E5CF440}"
 EndProject

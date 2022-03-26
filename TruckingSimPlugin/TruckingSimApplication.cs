@@ -14,7 +14,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
         {
         }
 
-        protected override String GetProcessName() => "";
+        protected override String[] GetProcessNames() => new[] { "American Truck Simulator", "amtrucks" };
 
         protected override String GetBundleName() => "";
 

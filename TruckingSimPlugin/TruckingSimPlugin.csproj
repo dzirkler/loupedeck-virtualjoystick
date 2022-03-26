@@ -16,6 +16,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+	<LoupedeckInstallation>C:\Program Files (x86)\Loupedeck\Loupedeck2\</LoupedeckInstallation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+	<PostBuildEvent>
+		cd $(OutputPath)
+		dir /s /b
+		del *.xml
+		del *.config
+		cd $(SolutionDir)
+		PowerShell -command Remove-Item .\Installer -Recurse -ErrorAction Ignore
+		PowerShell -command New-Item -Path .\Installer -ItemType Directory
+		PowerShell -command Compress-Archive -Path $(SolutionDir)LoupedeckPackage.yaml,$(SolutionDir)bin -DestinationPath $(SolutionDir)Installer\$(AssemblyName).zip -CompressionLevel Fastest -Force
+		PowerShell -command Rename-Item -Path .\Installer\$(AssemblyName).zip -newName $(AssemblyName).lplug4
+	</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeAnalysis, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -144,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="DefaultProfile30win.lp4" />
     <None Include="LoupedeckPackage.yaml" />
     <EmbeddedResource Include="TruckingSimConfig.yml" />
     <None Include="packages.config" />
