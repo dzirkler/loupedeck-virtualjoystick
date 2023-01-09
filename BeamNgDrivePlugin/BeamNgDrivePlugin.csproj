@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\Users\dzirkler\AppData\Local\Loupedeck\Plugins\</OutputPath>
+    <OutputPath>C:\Users\dzirkler\AppData\Local\Loupedeck\Plugins\LoupedeckBeamNgDrive\win\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -191,7 +191,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Icons\Wipers-WiperSpeedAdjust-On.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="metadata\Icon16x16.png" />
+    <Content Include="metadata\Icon256x256.png" />
+    <Content Include="metadata\Icon32x32.png" />
+    <Content Include="metadata\Icon48x48.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{65494adc-bd08-4f91-a3d3-7bb514dad7c1}</Project>
@@ -199,7 +204,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="BuildEvents\postbuild.cmd" />
     <None Include="DefaultProfiles\BeamNgDrive.lp4" />
+    <None Include="metadata\LoupedeckPackage.yaml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,5 +229,10 @@
     <EmbeddedResource Include="Icons\Lights-HighBeamsLatching-Off.png" />
     <EmbeddedResource Include="Icons\Lights-HighBeamsLatching-On.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent Condition="$(OS) == 'Windows_NT'">call "$(ProjectDir)BuildEvents\postbuild.cmd" "$(ProjectDir)" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent Condition="$(OS) != 'Windows_NT'">sh "$(ProjectDir)BuildEvents\postbuild" "$(ProjectDir)" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
