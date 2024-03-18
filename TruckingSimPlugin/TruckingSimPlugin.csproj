@@ -245,6 +245,8 @@
     <EmbeddedResource Include="Icons\Drivetrain-DiffLock-On.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Icons\Trailer-TrailerAxleLiftLower-Off.png" />
+    <EmbeddedResource Include="Icons\Trailer-TrailerAxleLiftLower-On.png" />
     <Content Include="metadata\Icon16x16.png" />
     <Content Include="metadata\Icon256x256.png" />
     <Content Include="metadata\Icon32x32.png" />

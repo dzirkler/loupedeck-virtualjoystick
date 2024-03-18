@@ -15,9 +15,9 @@ items:
   textFormatString: >-
     Game Running:
      {0}
-  telemetryItem: SdkActive
   commandTextFormatter: FullName
   iconTextFormatter: YesNo
+  telemetryItem: SdkActive
 - !Button
   buttonId: 0
   style: DisplayButton
@@ -28,9 +28,9 @@ items:
   textFormatString: >-
     Game Paused:
      {0}
-  telemetryItem: Paused
   commandTextFormatter: FullName
   iconTextFormatter: YesNo
+  telemetryItem: Paused
 - !Button
   buttonId: 0
   style: DisplayButton
@@ -41,10 +41,10 @@ items:
   textFormatString: >-
     Gear:
      {0}
-  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
   commandTextFormatter: FullName
   iconTextFormatter: Custom
   customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
+  telemetryItem: Truck.Current.DashboardValues.GearDashboards
 - !Button
   buttonId: 1
   style: MomentaryButton
@@ -55,9 +55,9 @@ items:
   textFormatString: >-
     Parking Brake
      {0}
-  telemetryItem: TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.MotorValues.BrakeValues.ParkingBrake
 - !Button
   buttonId: 2
   style: MomentaryButton
@@ -68,9 +68,9 @@ items:
   textFormatString: >-
     Engine On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.EngineEnabled
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.EngineEnabled
 - !Button
   buttonId: 3
   style: MomentaryButton
@@ -81,9 +81,9 @@ items:
   textFormatString: >-
     Cruise Control On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.DashboardValues.CruiseControl
 - !Button
   buttonId: 4
   style: MomentaryButton
@@ -96,11 +96,26 @@ items:
 
     Lift On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LiftAxleIndicator
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LiftAxleIndicator
 - !Button
   buttonId: 5
+  style: MomentaryButton
+  defaultValue: false
+  safeName: Trailer-TrailerAxleLiftLower
+  groupName: Trailer
+  fullName: Trailer Axle Lift/Lower
+  textFormatString: >-
+    Trailer Axle
+
+    Lift On:
+     {0}
+  commandTextFormatter: FullName
+  iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.TrailerLiftAxleIndicator
+- !Button
+  buttonId: 6
   style: MomentaryButton
   defaultValue: false
   safeName: Drivetrain-DiffLock
@@ -109,11 +124,11 @@ items:
   textFormatString: >-
     Diff Lock On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.DifferentialLock
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.DifferentialLock
 - !Button
-  buttonId: 6
+  buttonId: 7
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-Beacon
@@ -122,11 +137,11 @@ items:
   textFormatString: >-
     Beacon On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LightsValues.Beacon
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LightsValues.Beacon
 - !Button
-  buttonId: 7
+  buttonId: 8
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-FogLights
@@ -135,11 +150,11 @@ items:
   textFormatString: >-
     Fog Lights On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LightsValues.AuxFront
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LightsValues.AuxFront
 - !Button
-  buttonId: 8
+  buttonId: 9
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HazardLights
@@ -148,11 +163,11 @@ items:
   textFormatString: >-
     Hazard Lights On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LightsValues.HazardWarningLights
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LightsValues.HazardWarningLights
 - !Button
-  buttonId: 9
+  buttonId: 10
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-HighBeams
@@ -161,11 +176,11 @@ items:
   textFormatString: >-
     High Beams On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamHigh
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LightsValues.BeamHigh
 - !Button
-  buttonId: 10
+  buttonId: 11
   style: MomentaryButton
   defaultValue: false
   safeName: Lights-NextLightMode
@@ -174,11 +189,11 @@ items:
   textFormatString: >-
     Headlights On:
      {0}
-  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamLow
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.LightsValues.BeamLow
 - !Button
-  buttonId: 11
+  buttonId: 12
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera1
@@ -188,7 +203,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 12
+  buttonId: 13
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera2
@@ -198,7 +213,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 13
+  buttonId: 14
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera3
@@ -208,7 +223,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 14
+  buttonId: 15
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera4
@@ -218,7 +233,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 15
+  buttonId: 16
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera5
@@ -228,7 +243,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 16
+  buttonId: 17
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera6
@@ -238,7 +253,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 17
+  buttonId: 18
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera7
@@ -248,7 +263,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 18
+  buttonId: 19
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-Camera8
@@ -258,7 +273,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 19
+  buttonId: 20
   style: MomentaryButton
   defaultValue: false
   safeName: Camera-NextCamera
@@ -268,7 +283,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 20
+  buttonId: 21
   style: MomentaryButton
   defaultValue: false
   safeName: CruiseControl-CruiseControlResume
@@ -278,7 +293,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 21
+  buttonId: 22
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-AirHorn
@@ -288,7 +303,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 22
+  buttonId: 23
   style: MomentaryButton
   defaultValue: false
   safeName: Horns-Horn
@@ -298,7 +313,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 23
+  buttonId: 24
   style: MomentaryButton
   defaultValue: false
   safeName: Misc-ActivateEnter
@@ -308,7 +323,7 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !Button
-  buttonId: 24
+  buttonId: 25
   style: MomentaryButton
   defaultValue: false
   safeName: Trailer-TrailerAttachDetatch
@@ -318,34 +333,34 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !IncreaseDecreaseAdjustment
-  increaseButtonId: 25
-  decreaseButtonId: 26
-  resetButtonId: 27
+  increaseButtonId: 26
+  decreaseButtonId: 27
+  resetButtonId: 28
   safeName: CruiseControl-CruiseControlAdjust
   groupName: Cruise Control
   fullName: Cruise Control Adjust
   textFormatString: Cruise Control
-  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.Dashboard.CruiseControl
 - !IncreaseDecreaseAdjustment
-  increaseButtonId: 28
-  decreaseButtonId: 29
-  resetButtonId: 30
+  increaseButtonId: 29
+  decreaseButtonId: 30
+  resetButtonId: 31
   safeName: Transmission-DriveModeAdjust
   groupName: Transmission
   fullName: Drive Mode Adjust
   textFormatString: >-
     Gear:
      {0}
-  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
   commandTextFormatter: FullName
   iconTextFormatter: Custom
   customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
+  telemetryItem: Truck.Current.Dashboard.GearDashboards
 - !IncreaseDecreaseAdjustment
-  increaseButtonId: 31
-  decreaseButtonId: 32
-  resetButtonId: 33
+  increaseButtonId: 32
+  decreaseButtonId: 33
+  resetButtonId: 34
   safeName: RouteAdvisor-RouteAdviserPages
   groupName: Route Advisor
   fullName: Route Advisor Pages
@@ -353,9 +368,9 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !IncreaseDecreaseAdjustment
-  increaseButtonId: 34
-  decreaseButtonId: 35
-  resetButtonId: 36
+  increaseButtonId: 35
+  decreaseButtonId: 36
+  resetButtonId: 37
   safeName: Camera-CameraChange
   groupName: Camera
   fullName: Camera Change
@@ -363,16 +378,16 @@ items:
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
 - !IncreaseDecreaseAdjustment
-  increaseButtonId: 37
-  decreaseButtonId: 38
-  resetButtonId: 39
+  increaseButtonId: 38
+  decreaseButtonId: 39
+  resetButtonId: 40
   safeName: Wipers-WiperSpeedAdjust
   groupName: Wipers
   fullName: Wiper Speed Adjust
   textFormatString: Wipers
-  telemetryItem: TruckValues.CurrentValues.DashboardValues.Wipers
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
+  telemetryItem: Truck.Current.DashboardValues.Wipers
 - !FullRangeAdjustment
   axis: Rx
   defaultValue: 16383
