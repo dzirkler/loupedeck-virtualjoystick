@@ -5,6 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Referenced DLLs", "Referenced DLLs", "{E1BFE7BB-CDC8-4721-B7DE-DD72CB0AC2D1}"
 	ProjectSection(SolutionItems) = preProject
+		Referenced DLLs\Newtonsoft.Json.dll = Referenced DLLs\Newtonsoft.Json.dll
 		Referenced DLLs\PluginApi.dll = Referenced DLLs\PluginApi.dll
 		Referenced DLLs\SCSSdkClient.dll = Referenced DLLs\SCSSdkClient.dll
 		Referenced DLLs\vJoyInterface.dll = Referenced DLLs\vJoyInterface.dll

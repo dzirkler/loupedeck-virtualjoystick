@@ -86,7 +86,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             //    DisplayText = "XXX On:\n {0}",
             //    ButtonId = buttonId++,
             //    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-            //    TelemetryItem = "Truck.Current.XXX"
+            //    TelemetryItem = "TruckValues.CurrentValues.XXX"
             //});
 
             var mommentButtons = new List<Tuple<String, String>>
@@ -318,10 +318,11 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Gear:\n {0}",
                 ButtonId = 0,
                 Style = ButtonConfiguration.ButtonStyle.DisplayButton,
-                TelemetryItem = "Truck.Current.DashboardValues.GearDashboards",
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.GearDashboards",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.Custom,
-                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
+                //IconTextFormatter = DisplayTextFormat.Formatter.FormattedText,
+                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter,DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
             });
 
             // Momentary Buttons
@@ -333,7 +334,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
             //    DisplayText = "XXX On:\n {0}",
             //    ButtonId = buttonId++,
             //    Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-            //    TelemetryItem = "Truck.Current.XXX"
+            //    TelemetryItem = "TruckValues.CurrentValues.XXX"
             //});
             config.Items.Add(new ButtonConfiguration()
             {
@@ -343,7 +344,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Parking Brake\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.MotorValues.BrakeValues.ParkingBrake",
+                TelemetryItem = "TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -355,7 +356,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Engine On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.EngineEnabled",
+                TelemetryItem = "TruckValues.CurrentValues.EngineEnabled",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -367,7 +368,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Cruise Control On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.DashboardValues.CruiseControl",
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.CruiseControl",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -379,7 +380,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Axle\nLift On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LiftAxleIndicator",
+                TelemetryItem = "TruckValues.CurrentValues.LiftAxleIndicator",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -391,7 +392,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Trailer Axle\nLift On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.TrailerLiftAxleIndicator",
+                TelemetryItem = "TruckValues.CurrentValues.TrailerLiftAxleIndicator",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -403,7 +404,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Diff Lock On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.DifferentialLock",
+                TelemetryItem = "TruckValues.CurrentValues.DifferentialLock",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -415,7 +416,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Beacon On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LightsValues.Beacon",
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.Beacon",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -427,7 +428,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Fog Lights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LightsValues.AuxFront",
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.AuxFront",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -439,7 +440,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Hazard Lights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LightsValues.HazardWarningLights",
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.HazardWarningLights",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -451,7 +452,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "High Beams On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LightsValues.BeamHigh",
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamHigh",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -463,7 +464,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 TextFormatString = "Headlights On:\n {0}",
                 ButtonId = buttonId++,
                 Style = ButtonConfiguration.ButtonStyle.MomentaryButton,
-                TelemetryItem = "Truck.Current.LightsValues.BeamLow",
+                TelemetryItem = "TruckValues.CurrentValues.LightsValues.BeamLow",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -602,7 +603,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++,
-                TelemetryItem = "Truck.Current.Dashboard.CruiseControl",
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.CruiseControl",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });
@@ -615,10 +616,11 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++,
-                TelemetryItem = "Truck.Current.Dashboard.GearDashboards",
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.GearDashboards",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
-                IconTextFormatter = DisplayTextFormat.Formatter.Custom,
-                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
+                //IconTextFormatter = DisplayTextFormat.Formatter.Custom,
+                IconTextFormatter= DisplayTextFormat.Formatter.FormattedText,
+                CustomTextFormatterType = "DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter,DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin",
             });
             config.Items.Add(new IncreaseDecreaseAdjustmentConfiguration()
             {
@@ -653,7 +655,7 @@ namespace DesertSunSoftware.LoupedeckVirtualJoystick.ConfigGenerator
                 IncreaseButtonId = buttonId++,
                 DecreaseButtonId = buttonId++,
                 ResetButtonId = buttonId++,
-                TelemetryItem = "Truck.Current.DashboardValues.Wipers",
+                TelemetryItem = "TruckValues.CurrentValues.DashboardValues.Wipers",
                 CommandTextFormatter = DisplayTextFormat.Formatter.FullName,
                 IconTextFormatter = DisplayTextFormat.Formatter.IconOnly,
             });

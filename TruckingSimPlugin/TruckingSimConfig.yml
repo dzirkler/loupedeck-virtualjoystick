@@ -42,9 +42,9 @@ items:
     Gear:
      {0}
   commandTextFormatter: FullName
-  iconTextFormatter: Custom
-  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
-  telemetryItem: Truck.Current.DashboardValues.GearDashboards
+  iconTextFormatter: FormattedText
+  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter,DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
 - !Button
   buttonId: 1
   style: MomentaryButton
@@ -57,7 +57,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.MotorValues.BrakeValues.ParkingBrake
+  telemetryItem: TruckValues.CurrentValues.MotorValues.BrakeValues.ParkingBrake
 - !Button
   buttonId: 2
   style: MomentaryButton
@@ -70,7 +70,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.EngineEnabled
+  telemetryItem: TruckValues.CurrentValues.EngineEnabled
 - !Button
   buttonId: 3
   style: MomentaryButton
@@ -83,7 +83,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.DashboardValues.CruiseControl
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
 - !Button
   buttonId: 4
   style: MomentaryButton
@@ -98,7 +98,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LiftAxleIndicator
+  telemetryItem: TruckValues.CurrentValues.LiftAxleIndicator
 - !Button
   buttonId: 5
   style: MomentaryButton
@@ -113,7 +113,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.TrailerLiftAxleIndicator
+  telemetryItem: TruckValues.CurrentValues.TrailerLiftAxleIndicator
 - !Button
   buttonId: 6
   style: MomentaryButton
@@ -126,7 +126,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.DifferentialLock
+  telemetryItem: TruckValues.CurrentValues.DifferentialLock
 - !Button
   buttonId: 7
   style: MomentaryButton
@@ -139,7 +139,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LightsValues.Beacon
+  telemetryItem: TruckValues.CurrentValues.LightsValues.Beacon
 - !Button
   buttonId: 8
   style: MomentaryButton
@@ -152,7 +152,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LightsValues.AuxFront
+  telemetryItem: TruckValues.CurrentValues.LightsValues.AuxFront
 - !Button
   buttonId: 9
   style: MomentaryButton
@@ -165,7 +165,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LightsValues.HazardWarningLights
+  telemetryItem: TruckValues.CurrentValues.LightsValues.HazardWarningLights
 - !Button
   buttonId: 10
   style: MomentaryButton
@@ -178,7 +178,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LightsValues.BeamHigh
+  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamHigh
 - !Button
   buttonId: 11
   style: MomentaryButton
@@ -191,7 +191,7 @@ items:
      {0}
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.LightsValues.BeamLow
+  telemetryItem: TruckValues.CurrentValues.LightsValues.BeamLow
 - !Button
   buttonId: 12
   style: MomentaryButton
@@ -342,7 +342,7 @@ items:
   textFormatString: Cruise Control
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.Dashboard.CruiseControl
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.CruiseControl
 - !IncreaseDecreaseAdjustment
   increaseButtonId: 29
   decreaseButtonId: 30
@@ -354,9 +354,9 @@ items:
     Gear:
      {0}
   commandTextFormatter: FullName
-  iconTextFormatter: Custom
-  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter, DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
-  telemetryItem: Truck.Current.Dashboard.GearDashboards
+  iconTextFormatter: FormattedText
+  customTextFormatterType: DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin.TransmissionGearFormatter,DesertSunSoftware.LoupedeckVirtualJoystick.TruckingSimPlugin
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.GearDashboards
 - !IncreaseDecreaseAdjustment
   increaseButtonId: 32
   decreaseButtonId: 33
@@ -387,7 +387,7 @@ items:
   textFormatString: Wipers
   commandTextFormatter: FullName
   iconTextFormatter: IconOnly
-  telemetryItem: Truck.Current.DashboardValues.Wipers
+  telemetryItem: TruckValues.CurrentValues.DashboardValues.Wipers
 - !FullRangeAdjustment
   axis: Rx
   defaultValue: 16383
